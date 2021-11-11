@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faHome,
   faEnvelope,
-  faBookmark,
+  faSearch,
   faUserCircle,
   faCog,
   faSignOutAlt,
@@ -32,8 +32,8 @@ const PageLayout = () => {
             <p>Profile</p>
           </button>
           <button>
-            <FontAwesomeIcon icon={faBookmark} />
-            <p>Saved</p>
+            <FontAwesomeIcon icon={faSearch} />
+            <p>Search</p>
           </button>
           <button>
             <FontAwesomeIcon icon={faCog} />
