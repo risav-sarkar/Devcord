@@ -16,7 +16,7 @@ body {
   width: 100%;
   font-family: "Nunito";
   color: white;
-  background-color: #141414;
+  background-color: black;
 }
 
 * body::-webkit-scrollbar {
@@ -37,11 +37,6 @@ body::-webkit-scrollbar-thumb:hover {
   background: #999999;
 }
 
-#root {
-  height: 100%;
-  width: 100%;
-}
-
 .layout {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -51,6 +46,8 @@ body::-webkit-scrollbar-thumb:hover {
       -ms-flex-direction: row;
           flex-direction: row;
   height: 100vh;
+  margin: 0 auto;
+  max-width: 1400px;
 }
 
 .layout .navBar {
@@ -92,7 +89,7 @@ body::-webkit-scrollbar-thumb:hover {
   display: grid;
   -ms-grid-columns: 1fr;
       grid-template-columns: 1fr;
-  grid-gap: 40px;
+  grid-gap: 20px;
 }
 
 .layout .navBar .navButtons button {
@@ -105,7 +102,9 @@ body::-webkit-scrollbar-thumb:hover {
   outline: none;
   border: none;
   background-color: transparent;
-  color: white;
+  padding: 10px 15px;
+  border-radius: 20px;
+  color: #afafaf;
   cursor: pointer;
   display: -ms-grid;
   display: grid;
@@ -113,6 +112,15 @@ body::-webkit-scrollbar-thumb:hover {
   -ms-grid-columns: 35px 1fr;
       grid-template-columns: 35px 1fr;
   grid-gap: 10px;
+}
+
+.layout .navBar .navButtons button:hover {
+  background-color: #000047;
+}
+
+.layout .navBar .navButtons .selected {
+  color: white;
+  background-color: #000047;
 }
 
 .layout .navBar .navFooter {
@@ -154,7 +162,7 @@ body::-webkit-scrollbar-thumb:hover {
   }
   .layout .navBar .navButtons {
     place-items: center;
-    grid-gap: 60px;
+    grid-gap: 40px;
   }
   .layout .navBar .navButtons button {
     font-size: 28px;
@@ -187,7 +195,30 @@ body::-webkit-scrollbar-thumb:hover {
 
 .layout .content {
   width: 100%;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 62% 38%;
+      grid-template-columns: 62% 38%;
+}
+
+.layout .content .mainContent {
   background-color: #000025;
+  padding: 20px;
+}
+
+.layout .content .rightBar {
+  background-color: #414141;
+  padding: 20px;
+}
+
+@media (max-width: 900px) {
+  .layout .content {
+    -ms-grid-columns: 1fr;
+        grid-template-columns: 1fr;
+  }
+  .layout .content .rightBar {
+    display: none;
+  }
 }
 
 @media (max-width: 500px) {
@@ -211,11 +242,12 @@ body::-webkit-scrollbar-thumb:hover {
     -webkit-box-pack: justify;
         -ms-flex-pack: justify;
             justify-content: space-between;
-    grid-gap: 20px;
+    grid-gap: 10px;
   }
   .layout .navBar .navButtons button {
     grid-gap: 0px;
     font-size: 28px;
+    padding: 10px;
   }
   .layout .navBar .navButtons button p {
     display: none;
@@ -224,6 +256,6 @@ body::-webkit-scrollbar-thumb:hover {
     display: none;
   }
   .layout .content {
-    padding-bottom: 95px;
+    padding-bottom: 98px;
   }
 }
