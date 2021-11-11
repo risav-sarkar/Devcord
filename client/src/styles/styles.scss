@@ -1,0 +1,224 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;600&display=swap");
+
+$text_white: white;
+$text_grey: rgb(214, 214, 214);
+$background1: black;
+$background2: rgb(20, 20, 20);
+$background3: rgb(0, 0, 20);
+$max_width: 1300px;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  height: 100%;
+  width: 100%;
+  font-family: "Nunito";
+  color: $text_white;
+  background-color: $background2;
+}
+
+* body::-webkit-scrollbar {
+  width: 12px;
+}
+body::-webkit-scrollbar-track {
+  background: hsla(0, 0%, 2%, 0);
+}
+body::-webkit-scrollbar-thumb {
+  background-color: rgb(207, 207, 207);
+  border-radius: 25px;
+  border: 3px solid hsl(0, 0%, 2%);
+}
+body::-webkit-scrollbar-thumb:hover {
+  background: hsl(0, 0%, 60%);
+}
+
+#root {
+  height: 100%;
+  width: 100%;
+}
+
+.layout {
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+
+  .navBar {
+    background-color: black;
+    padding: 50px 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    .navHeader {
+      display: grid;
+      grid-template-columns: 1fr;
+      place-items: center;
+      img {
+        border-radius: 20px;
+        border: 2px solid white;
+        width: 100px;
+      }
+      p {
+        margin-top: 10px;
+        font-size: 15px;
+      }
+    }
+
+    .navButtons {
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-gap: 30px;
+
+      button {
+        text-align: left;
+        width: fit-content;
+        font-size: 28px;
+        letter-spacing: 2px;
+        outline: none;
+        border: none;
+        background-color: transparent;
+        color: $text_white;
+        cursor: pointer;
+        display: grid;
+        place-items: center;
+        grid-template-columns: 35px 1fr;
+        grid-gap: 10px;
+      }
+    }
+
+    .navFooter {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+
+      button {
+        text-align: left;
+        width: fit-content;
+        font-size: 25px;
+        outline: none;
+        border: none;
+        background-color: transparent;
+        color: $text_white;
+        cursor: pointer;
+      }
+
+      img {
+        max-width: 50px;
+      }
+    }
+  }
+  @media (min-width: 501px) and (max-width: 600px) {
+    .navBar {
+      padding: 30px 15px;
+      .navHeader {
+        img {
+          width: 80px;
+        }
+        p {
+          display: none;
+        }
+      }
+      .navButtons {
+        place-items: center;
+        grid-gap: 40px;
+        button {
+          grid-gap: 0px;
+          p {
+            display: none;
+          }
+        }
+      }
+      .navFooter {
+        justify-content: center;
+        h1 {
+          display: none;
+        }
+        button {
+          display: none;
+        }
+      }
+    }
+  }
+  @media (min-width: 600px) and (max-width: 1000px) {
+    .navBar {
+      padding: 30px;
+      .navHeader {
+        img {
+          width: 80px;
+        }
+        p {
+          display: none;
+        }
+      }
+      .navButtons {
+        place-items: center;
+        grid-gap: 40px;
+        button {
+          grid-gap: 0px;
+          p {
+            display: none;
+          }
+        }
+      }
+      .navFooter {
+        justify-content: center;
+        h1 {
+          display: none;
+        }
+        button {
+          display: none;
+        }
+      }
+    }
+  }
+
+  .content {
+    width: 100%;
+    background-color: rgb(0, 0, 37);
+  }
+}
+@media (max-width: 500px) {
+  .layout {
+    position: relative;
+
+    .navBar {
+      position: absolute;
+      width: 100%;
+      bottom: 0;
+      padding: 30px 40px;
+      .navHeader {
+        display: none;
+      }
+
+      .navButtons {
+        display: flex;
+        justify-content: space-between;
+        button {
+          grid-gap: 0px;
+
+          font-size: 35px;
+          p {
+            display: none;
+          }
+        }
+      }
+
+      .navFooter {
+        display: none;
+      }
+    }
+
+    .content {
+      padding-bottom: 95px;
+    }
+  }
+}

@@ -1,0 +1,250 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;600&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  height: 100%;
+  width: 100%;
+  font-family: "Nunito";
+  color: white;
+  background-color: #141414;
+}
+
+* body::-webkit-scrollbar {
+  width: 12px;
+}
+
+body::-webkit-scrollbar-track {
+  background: rgba(5, 5, 5, 0);
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: #cfcfcf;
+  border-radius: 25px;
+  border: 3px solid #050505;
+}
+
+body::-webkit-scrollbar-thumb:hover {
+  background: #999999;
+}
+
+#root {
+  height: 100%;
+  width: 100%;
+}
+
+.layout {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  height: 100vh;
+}
+
+.layout .navBar {
+  background-color: black;
+  padding: 50px 40px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.layout .navBar .navHeader {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr;
+      grid-template-columns: 1fr;
+  place-items: center;
+}
+
+.layout .navBar .navHeader img {
+  border-radius: 20px;
+  border: 2px solid white;
+  width: 100px;
+}
+
+.layout .navBar .navHeader p {
+  margin-top: 10px;
+  font-size: 15px;
+}
+
+.layout .navBar .navButtons {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr;
+      grid-template-columns: 1fr;
+  grid-gap: 30px;
+}
+
+.layout .navBar .navButtons button {
+  text-align: left;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  font-size: 28px;
+  letter-spacing: 2px;
+  outline: none;
+  border: none;
+  background-color: transparent;
+  color: white;
+  cursor: pointer;
+  display: -ms-grid;
+  display: grid;
+  place-items: center;
+  -ms-grid-columns: 35px 1fr;
+      grid-template-columns: 35px 1fr;
+  grid-gap: 10px;
+}
+
+.layout .navBar .navFooter {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 10px;
+}
+
+.layout .navBar .navFooter button {
+  text-align: left;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  font-size: 25px;
+  outline: none;
+  border: none;
+  background-color: transparent;
+  color: white;
+  cursor: pointer;
+}
+
+.layout .navBar .navFooter img {
+  max-width: 50px;
+}
+
+@media (min-width: 501px) and (max-width: 600px) {
+  .layout .navBar {
+    padding: 30px 15px;
+  }
+  .layout .navBar .navHeader img {
+    width: 80px;
+  }
+  .layout .navBar .navHeader p {
+    display: none;
+  }
+  .layout .navBar .navButtons {
+    place-items: center;
+    grid-gap: 40px;
+  }
+  .layout .navBar .navButtons button {
+    grid-gap: 0px;
+  }
+  .layout .navBar .navButtons button p {
+    display: none;
+  }
+  .layout .navBar .navFooter {
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+  .layout .navBar .navFooter h1 {
+    display: none;
+  }
+  .layout .navBar .navFooter button {
+    display: none;
+  }
+}
+
+@media (min-width: 600px) and (max-width: 1000px) {
+  .layout .navBar {
+    padding: 30px;
+  }
+  .layout .navBar .navHeader img {
+    width: 80px;
+  }
+  .layout .navBar .navHeader p {
+    display: none;
+  }
+  .layout .navBar .navButtons {
+    place-items: center;
+    grid-gap: 40px;
+  }
+  .layout .navBar .navButtons button {
+    grid-gap: 0px;
+  }
+  .layout .navBar .navButtons button p {
+    display: none;
+  }
+  .layout .navBar .navFooter {
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+  .layout .navBar .navFooter h1 {
+    display: none;
+  }
+  .layout .navBar .navFooter button {
+    display: none;
+  }
+}
+
+.layout .content {
+  width: 100%;
+  background-color: #000025;
+}
+
+@media (max-width: 500px) {
+  .layout {
+    position: relative;
+  }
+  .layout .navBar {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    padding: 30px 40px;
+  }
+  .layout .navBar .navHeader {
+    display: none;
+  }
+  .layout .navBar .navButtons {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+  }
+  .layout .navBar .navButtons button {
+    grid-gap: 0px;
+    font-size: 35px;
+  }
+  .layout .navBar .navButtons button p {
+    display: none;
+  }
+  .layout .navBar .navFooter {
+    display: none;
+  }
+  .layout .content {
+    padding-bottom: 95px;
+  }
+}
