@@ -82,9 +82,6 @@ const PageLayout = () => {
         <div className="navFooter">
           <img src={ProfilePic}></img>
           <h1>Devcord</h1>
-          <button>
-            <FontAwesomeIcon icon={faSignOutAlt} />
-          </button>
         </div>
       </div>
       <div className="content">
