@@ -6,7 +6,6 @@ import {
   faSearch,
   faUserCircle,
   faCog,
-  faSignOutAlt,
 } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 import Home from "../components/pages/home";
@@ -23,7 +22,7 @@ const PageLayout = () => {
     <div className="layout">
       <div className="navBar">
         <div className="navHeader">
-          <img src={ProfilePic}></img>
+          <img src={ProfilePic} alt="profilePicture"></img>
           <p>Risav Sarkar</p>
         </div>
 
@@ -80,7 +79,7 @@ const PageLayout = () => {
         </div>
 
         <div className="navFooter">
-          <img src={ProfilePic}></img>
+          <img src={ProfilePic} alt="profilePicture"></img>
           <h1>Devcord</h1>
         </div>
       </div>

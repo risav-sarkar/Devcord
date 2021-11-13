@@ -11,7 +11,7 @@ const Profile = () => {
             <p className="textGrey">Followers</p>
           </div>
           <div className="profileImage">
-            <img src={ProfilePic}></img>
+            <img src={ProfilePic} alt="profilePicture"></img>
           </div>
           <div className="profileInfo">
             <p>20</p>

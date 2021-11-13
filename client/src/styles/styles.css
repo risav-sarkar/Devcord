@@ -45,6 +45,70 @@ body::-webkit-scrollbar-thumb:hover {
   margin: 40px 0;
 }
 
+.post {
+  border-radius: 20px;
+  background-color: #161618;
+}
+
+.post .postHeader {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 20px;
+  gap: 20px;
+}
+
+.post .postHeader img {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+}
+
+.post .mainImage {
+  width: 100%;
+}
+
+.post .mainImage img {
+  max-width: 100%;
+  border-radius: 20px;
+}
+
+.post .buttonContainer {
+  padding: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 20px;
+}
+
+.post .buttonContainer button {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 10px;
+  font-size: 18px;
+  background-color: transparent;
+  outline: none;
+  border: none;
+  color: #e0ddfa;
+  cursor: pointer;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.post .buttonContainer button:hover {
+  color: #6f6e79;
+}
+
 .layout {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -228,7 +292,7 @@ body::-webkit-scrollbar-thumb:hover {
     position: absolute;
     width: 100%;
     bottom: 0;
-    padding: 25px;
+    padding: 10px;
     overflow-x: scroll;
   }
   .layout .navBar .navHeader {
@@ -245,7 +309,7 @@ body::-webkit-scrollbar-thumb:hover {
   }
   .layout .navBar .navButtons button {
     grid-gap: 0px;
-    font-size: 28px;
+    font-size: 22px;
     padding: 10px;
   }
   .layout .navBar .navButtons button p {
@@ -255,7 +319,7 @@ body::-webkit-scrollbar-thumb:hover {
     display: none;
   }
   .layout .content {
-    padding-bottom: 98px;
+    padding-bottom: 68px;
   }
 }
 
@@ -355,4 +419,74 @@ body::-webkit-scrollbar-thumb:hover {
 
 .profileContainer .buttonContainer .btn1 {
   background: #634bff;
+}
+
+.homeContainer {
+  padding: 20px;
+  display: -ms-grid;
+  display: grid;
+  gap: 20px;
+}
+
+.homeContainer .createPostContainer {
+  background-color: #161618;
+  padding: 20px;
+  border-radius: 20px;
+}
+
+.homeContainer .createPostContainer .createPostHeader {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 15px;
+}
+
+.homeContainer .createPostContainer .createPostHeader img {
+  height: 60px;
+  width: 60px;
+  border-radius: 50%;
+}
+
+.homeContainer .createPostContent {
+  padding-top: 20px;
+}
+
+.homeContainer .createPostContent .inputContainer {
+  width: 100%;
+  padding: 10px;
+  background-color: #e0ddfa;
+  border-radius: 20px;
+}
+
+.homeContainer .createPostContent .inputContainer input {
+  background-color: transparent;
+  outline: none;
+  border: none;
+  height: 100%;
+  width: 100%;
+  font-size: 22px;
+  padding: 0 10px;
+}
+
+.homeContainer .createPostContent .buttonContainer {
+  padding-top: 20px;
+}
+
+.homeContainer .createPostContent .buttonContainer .postBtn {
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 16px;
+  letter-spacing: 1px;
+  outline: none;
+  border: 2px solid #634bff;
+  background-color: #634bff;
+  color: #e0ddfa;
+}
+
+.homeContainer .createPostContent .buttonContainer .postBtn:hover {
+  border: 2px solid #3b1cff;
+  background-color: #3b1cff;
 }
