@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;600&display=swap");
 
 $text_white: #e0ddfa;
-$text_grey: #6f6e79;
+$text_grey: #a8a8a8;
 $background1: #040405;
 $background2: rgb(22, 22, 24);
 $accent1: #634bff;
@@ -28,21 +28,6 @@ body {
   background-color: $background1;
 }
 
-* body::-webkit-scrollbar {
-  width: 12px;
-}
-body::-webkit-scrollbar-track {
-  background: hsla(0, 0%, 2%, 0);
-}
-body::-webkit-scrollbar-thumb {
-  background-color: rgb(207, 207, 207);
-  border-radius: 25px;
-  border: 3px solid hsl(0, 0%, 2%);
-}
-body::-webkit-scrollbar-thumb:hover {
-  background: hsl(0, 0%, 60%);
-}
-
 // REUSEABLE COMPONENTS
 
 .line {
@@ -53,12 +38,13 @@ body::-webkit-scrollbar-thumb:hover {
 }
 
 .post {
-  border-radius: 20px;
-  background-color: $background2;
+  max-width: 600px;
+  margin: 0 auto;
+
   .postHeader {
     display: flex;
     align-items: center;
-    padding: 20px;
+    padding-bottom: 20px;
     gap: 20px;
 
     img {
@@ -66,18 +52,23 @@ body::-webkit-scrollbar-thumb:hover {
       width: 40px;
       border-radius: 50%;
     }
+
+    p {
+      color: $text_grey;
+    }
   }
 
   .mainImage {
     width: 100%;
     img {
       max-width: 100%;
-      border-radius: 20px;
+      border-radius: 10px;
+      object-fit: cover;
     }
   }
 
   .buttonContainer {
-    padding: 20px;
+    padding-top: 20px;
     display: flex;
     align-items: center;
     gap: 20px;
@@ -173,7 +164,9 @@ body::-webkit-scrollbar-thumb:hover {
       gap: 10px;
 
       img {
-        max-width: 50px;
+        border-radius: 50%;
+        height: 50px;
+        width: 50px;
       }
     }
   }
@@ -289,105 +282,115 @@ body::-webkit-scrollbar-thumb:hover {
 // PAGES
 
 .profileContainer {
-  .coverImage {
-    background-image: url(../assets/Cover.jpg);
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    height: 200px;
-    position: relative;
+  .profileSection {
+    .coverImage {
+      background-image: url(../assets/Cover.jpg);
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      height: 200px;
+      position: relative;
 
-    .blur {
-      position: absolute;
-      width: 100%;
-      bottom: 0;
-      height: 80px;
-      background: linear-gradient(to top, $background1, #ffffff00);
-    }
-    .profileImageContainer {
-      width: 100%;
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      place-items: center;
-      position: absolute;
-      bottom: -75px;
-
-      .profileInfo {
-        padding-top: 75px;
-        text-align: center;
+      .blur {
+        position: absolute;
+        width: 100%;
+        bottom: 0;
+        height: 80px;
+        background: linear-gradient(to top, $background1, #ffffff00);
       }
-      .profileImage {
-        border-radius: 50%;
-        width: 150px;
-        height: 150px;
-        overflow: hidden;
+      .profileImageContainer {
+        width: 100%;
         display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
         place-items: center;
-        background-color: black;
+        position: absolute;
+        bottom: -75px;
 
-        img {
-          max-width: 100%;
-          max-height: 100%;
+        .profileInfo {
+          padding-top: 75px;
+          text-align: center;
+        }
+        .profileImage {
+          border-radius: 50%;
+          width: 150px;
+          height: 150px;
+          overflow: hidden;
+          display: grid;
+          place-items: center;
+          background-color: black;
+
+          img {
+            max-width: 100%;
+            max-height: 100%;
+          }
         }
       }
     }
-  }
 
-  .profileTitle {
-    padding: 85px 20px 0 20px;
-    text-align: center;
-  }
+    .profileTitle {
+      padding: 85px 20px 0 20px;
+      text-align: center;
+    }
 
-  .profileDesc {
-    padding: 20px;
-    text-align: center;
-  }
+    .profileDesc {
+      padding: 20px;
+      text-align: center;
+    }
 
-  .textGrey {
-    color: $text_grey;
-  }
+    .textGrey {
+      color: $text_grey;
+    }
 
-  .buttonContainer {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    place-items: center;
-    max-width: 200px;
-    grid-gap: 10px;
-    margin: 0 auto;
+    .buttonContainer {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      place-items: center;
+      max-width: 200px;
+      grid-gap: 10px;
+      margin: 0 auto;
 
-    button {
-      padding: 10px 15px;
-      border-radius: 20px;
-      border: 2px solid $accent1;
-      background: transparent;
-      outline: none;
-      color: $text_white;
-      font-size: 16px;
-      letter-spacing: 1px;
-      cursor: pointer;
-      transition: 0.3s;
+      button {
+        padding: 10px 15px;
+        border-radius: 20px;
+        border: 2px solid $accent1;
+        background: transparent;
+        outline: none;
+        color: $text_white;
+        font-size: 16px;
+        letter-spacing: 1px;
+        cursor: pointer;
+        transition: 0.3s;
 
-      &:hover {
-        border: 2px solid $accent1_hover;
-        background-color: $accent1_hover;
+        &:hover {
+          border: 2px solid $accent1_hover;
+          background-color: $accent1_hover;
+        }
+      }
+
+      .btn1 {
+        background: $accent1;
       }
     }
-
-    .btn1 {
-      background: $accent1;
-    }
+  }
+  .postContainer {
+    display: grid;
+    gap: 40px;
+    padding: 0 20px 20px 20px;
   }
 }
 
 .homeContainer {
   padding: 20px;
   display: grid;
-  gap: 20px;
+  gap: 40px;
 
   .createPostContainer {
     background-color: $background2;
     padding: 20px;
     border-radius: 20px;
+    max-width: 600px;
+    margin: 0 auto;
+    width: 100%;
     .createPostHeader {
       display: flex;
       align-items: center;

@@ -20,34 +20,16 @@ body {
   background-color: #040405;
 }
 
-* body::-webkit-scrollbar {
-  width: 12px;
-}
-
-body::-webkit-scrollbar-track {
-  background: rgba(5, 5, 5, 0);
-}
-
-body::-webkit-scrollbar-thumb {
-  background-color: #cfcfcf;
-  border-radius: 25px;
-  border: 3px solid #050505;
-}
-
-body::-webkit-scrollbar-thumb:hover {
-  background: #999999;
-}
-
 .line {
   width: 100%;
   height: 1px;
-  background-color: #6f6e79;
+  background-color: #a8a8a8;
   margin: 40px 0;
 }
 
 .post {
-  border-radius: 20px;
-  background-color: #161618;
+  max-width: 600px;
+  margin: 0 auto;
 }
 
 .post .postHeader {
@@ -57,7 +39,7 @@ body::-webkit-scrollbar-thumb:hover {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  padding: 20px;
+  padding-bottom: 20px;
   gap: 20px;
 }
 
@@ -67,17 +49,23 @@ body::-webkit-scrollbar-thumb:hover {
   border-radius: 50%;
 }
 
+.post .postHeader p {
+  color: #a8a8a8;
+}
+
 .post .mainImage {
   width: 100%;
 }
 
 .post .mainImage img {
   max-width: 100%;
-  border-radius: 20px;
+  border-radius: 10px;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .post .buttonContainer {
-  padding: 20px;
+  padding-top: 20px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -106,7 +94,7 @@ body::-webkit-scrollbar-thumb:hover {
 }
 
 .post .buttonContainer button:hover {
-  color: #6f6e79;
+  color: #a8a8a8;
 }
 
 .layout {
@@ -147,7 +135,7 @@ body::-webkit-scrollbar-thumb:hover {
 
 .layout .navBar .navHeader img {
   border-radius: 20px;
-  border: 2px solid #6f6e79;
+  border: 2px solid #a8a8a8;
   width: 100px;
 }
 
@@ -176,7 +164,7 @@ body::-webkit-scrollbar-thumb:hover {
   background-color: transparent;
   padding: 10px 15px;
   border-radius: 20px;
-  color: #6f6e79;
+  color: #a8a8a8;
   cursor: pointer;
   display: -ms-grid;
   display: grid;
@@ -209,7 +197,9 @@ body::-webkit-scrollbar-thumb:hover {
 }
 
 .layout .navBar .navFooter img {
-  max-width: 50px;
+  border-radius: 50%;
+  height: 50px;
+  width: 50px;
 }
 
 @media (max-width: 1150px) {
@@ -323,7 +313,7 @@ body::-webkit-scrollbar-thumb:hover {
   }
 }
 
-.profileContainer .coverImage {
+.profileContainer .profileSection .coverImage {
   background-image: url(../assets/Cover.jpg);
   background-size: cover;
   background-repeat: no-repeat;
@@ -332,7 +322,7 @@ body::-webkit-scrollbar-thumb:hover {
   position: relative;
 }
 
-.profileContainer .coverImage .blur {
+.profileContainer .profileSection .coverImage .blur {
   position: absolute;
   width: 100%;
   bottom: 0;
@@ -341,7 +331,7 @@ body::-webkit-scrollbar-thumb:hover {
   background: linear-gradient(to top, #040405, #ffffff00);
 }
 
-.profileContainer .coverImage .profileImageContainer {
+.profileContainer .profileSection .coverImage .profileImageContainer {
   width: 100%;
   display: -ms-grid;
   display: grid;
@@ -352,12 +342,12 @@ body::-webkit-scrollbar-thumb:hover {
   bottom: -75px;
 }
 
-.profileContainer .coverImage .profileImageContainer .profileInfo {
+.profileContainer .profileSection .coverImage .profileImageContainer .profileInfo {
   padding-top: 75px;
   text-align: center;
 }
 
-.profileContainer .coverImage .profileImageContainer .profileImage {
+.profileContainer .profileSection .coverImage .profileImageContainer .profileImage {
   border-radius: 50%;
   width: 150px;
   height: 150px;
@@ -368,26 +358,26 @@ body::-webkit-scrollbar-thumb:hover {
   background-color: black;
 }
 
-.profileContainer .coverImage .profileImageContainer .profileImage img {
+.profileContainer .profileSection .coverImage .profileImageContainer .profileImage img {
   max-width: 100%;
   max-height: 100%;
 }
 
-.profileContainer .profileTitle {
+.profileContainer .profileSection .profileTitle {
   padding: 85px 20px 0 20px;
   text-align: center;
 }
 
-.profileContainer .profileDesc {
+.profileContainer .profileSection .profileDesc {
   padding: 20px;
   text-align: center;
 }
 
-.profileContainer .textGrey {
-  color: #6f6e79;
+.profileContainer .profileSection .textGrey {
+  color: #a8a8a8;
 }
 
-.profileContainer .buttonContainer {
+.profileContainer .profileSection .buttonContainer {
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: 1fr 1fr;
@@ -398,7 +388,7 @@ body::-webkit-scrollbar-thumb:hover {
   margin: 0 auto;
 }
 
-.profileContainer .buttonContainer button {
+.profileContainer .profileSection .buttonContainer button {
   padding: 10px 15px;
   border-radius: 20px;
   border: 2px solid #634bff;
@@ -412,26 +402,36 @@ body::-webkit-scrollbar-thumb:hover {
   transition: 0.3s;
 }
 
-.profileContainer .buttonContainer button:hover {
+.profileContainer .profileSection .buttonContainer button:hover {
   border: 2px solid #3b1cff;
   background-color: #3b1cff;
 }
 
-.profileContainer .buttonContainer .btn1 {
+.profileContainer .profileSection .buttonContainer .btn1 {
   background: #634bff;
+}
+
+.profileContainer .postContainer {
+  display: -ms-grid;
+  display: grid;
+  gap: 40px;
+  padding: 0 20px 20px 20px;
 }
 
 .homeContainer {
   padding: 20px;
   display: -ms-grid;
   display: grid;
-  gap: 20px;
+  gap: 40px;
 }
 
 .homeContainer .createPostContainer {
   background-color: #161618;
   padding: 20px;
   border-radius: 20px;
+  max-width: 600px;
+  margin: 0 auto;
+  width: 100%;
 }
 
 .homeContainer .createPostContainer .createPostHeader {
