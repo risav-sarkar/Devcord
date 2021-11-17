@@ -44,6 +44,7 @@ body {
 .post {
   max-width: 600px;
   margin: 0 auto;
+  width: 100%;
 
   .postHeader {
     display: flex;
@@ -69,6 +70,15 @@ body {
       border-radius: 10px;
       object-fit: cover;
     }
+  }
+
+  .mainText {
+    width: 100%;
+    background-color: $background2;
+    border-radius: 10px;
+    display: grid;
+    padding: 20px;
+    font-size: 22px;
   }
 
   .buttonContainer {

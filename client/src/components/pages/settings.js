@@ -10,7 +10,7 @@ import {
 import Rightbar from "../resuableComponents/rightbar";
 import { Link } from "react-router-dom";
 
-const Settings = () => {
+const Settings = ({ userId }) => {
   return (
     <div className="layout">
       <div className="navBar">
@@ -34,7 +34,7 @@ const Settings = () => {
             </button>
           </Link>
 
-          <Link to="/profile">
+          <Link to={`/profile/${userId}`}>
             <button>
               <FontAwesomeIcon icon={faUserCircle} />
               <p>Profile</p>

@@ -10,8 +10,21 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import Rightbar from "../resuableComponents/rightbar";
 import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
-const Home = () => {
+const Home = ({ userId }) => {
+  const [posts, setPosts] = useState([]);
+  useEffect(() => {
+    const postFetch = async () => {
+      const res = await axios.get(
+        `http://localhost:8800/api/posts/timeline/${userId}`
+      );
+      setPosts(res.data);
+    };
+    postFetch();
+  }, [userId]);
+
   return (
     <div className="layout">
       <div className="navBar">
@@ -35,7 +48,7 @@ const Home = () => {
             </button>
           </Link>
 
-          <Link to="/profile">
+          <Link to={`/profile/${userId}`}>
             <button>
               <FontAwesomeIcon icon={faUserCircle} />
               <p>Profile</p>
@@ -87,11 +100,9 @@ const Home = () => {
                 </div>
               </form>
             </div>
-            <Post />
-            <Post />
-            <Post />
-            <Post />
-            <Post />
+            {posts.map((i) => {
+              return <Post key={i._id} data={i} />;
+            })}
           </div>
         </div>
         <div className="rightBar">

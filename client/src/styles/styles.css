@@ -34,6 +34,7 @@ body {
 .post {
   max-width: 600px;
   margin: 0 auto;
+  width: 100%;
 }
 
 .post .postHeader {
@@ -66,6 +67,16 @@ body {
   border-radius: 10px;
   -o-object-fit: cover;
      object-fit: cover;
+}
+
+.post .mainText {
+  width: 100%;
+  background-color: #161618;
+  border-radius: 10px;
+  display: -ms-grid;
+  display: grid;
+  padding: 20px;
+  font-size: 22px;
 }
 
 .post .buttonContainer {

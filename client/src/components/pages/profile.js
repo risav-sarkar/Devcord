@@ -10,8 +10,22 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import Rightbar from "../resuableComponents/rightbar";
 import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
-const Profile = () => {
+const Profile = ({ userId, followers, following, username }) => {
+  const [posts, setPosts] = useState([]);
+
+  useEffect(() => {
+    const postFetch = async () => {
+      const res = await axios.get(
+        `http://localhost:8800/api/posts/profile/${username}`
+      );
+      setPosts(res.data);
+    };
+    postFetch();
+  }, [username]);
+
   return (
     <div className="layout">
       <div className="navBar">
@@ -35,7 +49,7 @@ const Profile = () => {
             </button>
           </Link>
 
-          <Link to="/profile">
+          <Link to={`/profile/${userId}`}>
             <button className="selected">
               <FontAwesomeIcon icon={faUserCircle} />
               <p>Profile</p>
@@ -71,21 +85,21 @@ const Profile = () => {
                 <div className="blur"></div>
                 <div className="profileImageContainer">
                   <div className="profileInfo">
-                    <p>20</p>
+                    <p>{followers}</p>
                     <p className="textGrey">Followers</p>
                   </div>
                   <div className="profileImage">
                     <img src={ProfilePic} alt="profilePicture"></img>
                   </div>
                   <div className="profileInfo">
-                    <p>20</p>
+                    <p>{following}</p>
                     <p className="textGrey">Following</p>
                   </div>
                 </div>
               </div>
 
               <div className="profileTitle">
-                <h2>Risav Sarkar</h2>
+                <h2>{username}</h2>
                 <h4 className="textGrey">Kolkata, India</h4>
               </div>
 
@@ -104,11 +118,9 @@ const Profile = () => {
               <div className="line"></div>
             </div>
             <div className="postContainer">
-              <Post />
-              <Post />
-              <Post />
-              <Post />
-              <Post />
+              {posts.map((i) => {
+                return <Post key={i._id} data={i} />;
+              })}
             </div>
           </div>
         </div>
