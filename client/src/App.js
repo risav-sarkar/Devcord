@@ -43,25 +43,31 @@ const App = () => {
         <Route
           exact
           path="/messages"
-          element={<Messages userId={user._id} />}
+          element={user ? <Messages userId={user._id} /> : <Login />}
         />
         <Route
           exact
           path="/profile/:username"
           element={
-            <Profile
-              userId={user._id}
-              followers={user.followers.length}
-              following={user.followings.length}
-              username={user.username}
-            />
+            user ? (
+              <Profile
+                userId={user._id}
+                followers={user.followers.length}
+                following={user.followings.length}
+                username={user.username}
+              />
+            ) : null
           }
         />
-        <Route exact path="/search" element={<Search userId={user._id} />} />
+        <Route
+          exact
+          path="/search"
+          element={user ? <Search userId={user._id} /> : <Login />}
+        />
         <Route
           exact
           path="/settings"
-          element={<Settings userId={user._id} />}
+          element={user ? <Settings userId={user._id} /> : <Login />}
         />
       </Routes>
     </Router>
