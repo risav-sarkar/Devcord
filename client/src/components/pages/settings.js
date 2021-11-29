@@ -11,6 +11,10 @@ import Rightbar from "../resuableComponents/rightbar";
 import { Link } from "react-router-dom";
 
 const Settings = ({ userId }) => {
+  const handleLogout = () => {
+    console.log("Logout");
+    localStorage.setItem("user_Devcord", JSON.stringify(null));
+  };
   return (
     <div className="layout">
       <div className="navBar">
@@ -65,7 +69,13 @@ const Settings = ({ userId }) => {
       <div className="content">
         <div className="mainContent">
           <div className="searchContainer">
-            <h1>Settings</h1>
+            <button
+              onClick={() => {
+                handleLogout();
+              }}
+            >
+              LogOut
+            </button>
           </div>
         </div>
         <div className="rightBar">

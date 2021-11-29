@@ -28,7 +28,7 @@ const App = () => {
         <Route
           exact
           path="/"
-          element={user ? <Home userId={user._id} /> : <Login />}
+          element={user ? <Home userId={user._id} /> : <Navigate to="/login" />}
         />
         <Route
           exact
@@ -43,7 +43,9 @@ const App = () => {
         <Route
           exact
           path="/messages"
-          element={user ? <Messages userId={user._id} /> : <Login />}
+          element={
+            user ? <Messages userId={user._id} /> : <Navigate to="/login" />
+          }
         />
         <Route
           exact
@@ -62,12 +64,16 @@ const App = () => {
         <Route
           exact
           path="/search"
-          element={user ? <Search userId={user._id} /> : <Login />}
+          element={
+            user ? <Search userId={user._id} /> : <Navigate to="/login" />
+          }
         />
         <Route
           exact
           path="/settings"
-          element={user ? <Settings userId={user._id} /> : <Login />}
+          element={
+            user ? <Settings userId={user._id} /> : <Navigate to="/login" />
+          }
         />
       </Routes>
     </Router>
