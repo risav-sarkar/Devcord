@@ -496,9 +496,12 @@ body {
   font-size: 16px;
   letter-spacing: 1px;
   outline: none;
+  cursor: pointer;
   border: 2px solid #634bff;
   background-color: #634bff;
   color: #e0ddfa;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
 }
 
 .homeContainer .createPostContent .buttonContainer .postBtn:hover {
@@ -509,118 +512,113 @@ body {
 .login {
   width: 100vw;
   height: 100vh;
-  background-color: #f0f2f5;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 50% 50%;
+      grid-template-columns: 50% 50%;
+  background-color: #161618;
 }
 
-.loginWrapper {
-  width: 70%;
-  height: 70%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
+.login .loginLeft {
+  display: -ms-grid;
+  display: grid;
+  place-items: center;
 }
 
-.loginLeft,
-.loginRight {
-  -webkit-box-flex: 1;
-      -ms-flex: 1;
-          flex: 1;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+.login .loginLeft h1 {
+  font-size: 60px;
 }
 
-.loginLogo {
-  font-size: 50px;
-  font-weight: 800;
-  color: #1775ee;
-  margin-bottom: 10px;
-}
-
-.loginDesc {
-  font-size: 24px;
-}
-
-.loginBox {
-  height: 300px;
+.login .loginRight {
+  display: -ms-grid;
+  display: grid;
+  place-items: center;
+  background-color: #040405;
   padding: 20px;
-  background-color: white;
-  border-radius: 10px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
 }
 
-.loginInput {
+.login .loginRight .loginBox {
+  max-width: 350px;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr;
+      grid-template-columns: 1fr;
+  gap: 10px;
+  width: 100%;
+}
+
+.login .loginRight .loginBox .loginInput {
   height: 50px;
-  border-radius: 10px;
-  border: 1px solid gray;
+  border-radius: 20px;
+  padding: 20px;
+  outline: none;
+  border: 3px solid transparent;
+  font-size: 16px;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.login .loginRight .loginBox .loginInput:focus {
+  border: 3px solid #634bff;
+}
+
+.login .loginRight .loginBox button {
+  height: 50px;
+  border-radius: 20px;
+  padding: 10px;
+  outline: none;
+  border: 3px solid transparent;
+  background-color: #634bff;
+  color: #e0ddfa;
   font-size: 18px;
-  padding-left: 20px;
-}
-
-.loginInput:focus {
-  outline: none;
-}
-
-.loginButton {
-  height: 50px;
-  border-radius: 10px;
-  border: none;
-  background-color: #1775ee;
-  color: white;
-  font-size: 20px;
-  font-weight: 500;
   cursor: pointer;
+  letter-spacing: 1px;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
 }
 
-.loginButton:focus {
-  outline: none;
+.login .loginRight .loginBox .loginButton:hover {
+  background-color: #3b1cff;
 }
 
-.loginButton:disabled {
-  cursor: not-allowed;
+.login .loginRight .loginBox .loginForgot {
+  padding: 0;
+  height: 25px;
+  background-color: transparent;
+  font-size: 14px;
 }
 
-.loginForgot {
+.login .loginRight .loginBox .loginForgot:hover {
+  color: #a8a8a8;
+}
+
+.login .loginRight .loginBox p {
   text-align: center;
-  color: #1775ee;
 }
 
-.loginRegisterButton {
-  width: 60%;
-  -ms-flex-item-align: center;
-      -ms-grid-row-align: center;
-      align-self: center;
-  height: 50px;
-  border-radius: 10px;
-  border: none;
-  background-color: #42b72a;
-  color: white;
-  font-size: 20px;
-  font-weight: 500;
-  cursor: pointer;
+.login .loginRight .loginBox p .registerButton {
+  padding: 0;
+  height: 20px;
+  font-size: 16px;
+  background-color: transparent;
+  color: #634bff;
+}
+
+.login .loginRight .loginBox p .registerButton:hover {
+  color: #3b1cff;
+}
+
+@media (max-width: 600px) {
+  .login {
+    -ms-grid-columns: 1fr;
+        grid-template-columns: 1fr;
+  }
+  .loginLeft {
+    padding: 100px 0;
+  }
+  .loginRight {
+    padding: 40px;
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+  }
 }

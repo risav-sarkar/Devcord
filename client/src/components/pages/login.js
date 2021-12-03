@@ -1,4 +1,5 @@
 import { useContext, useRef } from "react";
+import { Link } from "react-router-dom";
 import { loginCall } from "../../apiCalls";
 import { AuthContext } from "../../context/AuthContext";
 
@@ -17,39 +18,37 @@ export default function Login() {
 
   return (
     <div className="login">
-      <div className="loginWrapper">
-        <div className="loginLeft">
-          <h3 className="loginLogo">Lamasocial</h3>
-          <span className="loginDesc">
-            Connect with friends and the world around you on Lamasocial.
-          </span>
-        </div>
-        <div className="loginRight">
-          <form className="loginBox" onSubmit={handleClick}>
-            <input
-              placeholder="Email"
-              type="email"
-              required
-              className="loginInput"
-              ref={email}
-            />
-            <input
-              placeholder="Password"
-              type="password"
-              required
-              minLength="6"
-              className="loginInput"
-              ref={password}
-            />
-            <button className="loginButton" type="submit" disabled={isFetching}>
-              {isFetching ? "Fetching" : "Log In"}
-            </button>
-            <span className="loginForgot">Forgot Password?</span>
-            <button className="loginRegisterButton">
-              {isFetching ? "Fetching" : "Create a New Account"}
-            </button>
-          </form>
-        </div>
+      <div className="loginLeft">
+        <h1 className="loginLogo">Devcord</h1>
+      </div>
+      <div className="loginRight">
+        <form className="loginBox" onSubmit={handleClick}>
+          <input
+            placeholder="Email"
+            type="email"
+            required
+            className="loginInput"
+            ref={email}
+          />
+          <input
+            placeholder="Password"
+            type="password"
+            required
+            minLength="6"
+            className="loginInput"
+            ref={password}
+          />
+          <button className="loginButton" type="submit" disabled={isFetching}>
+            {isFetching ? "Loading..." : "Login"}
+          </button>
+          <button className="loginForgot">Forgot Password?</button>
+          <p>
+            Not registered yet?{" "}
+            <Link to="/register">
+              <button className="registerButton">Register</button>
+            </Link>
+          </p>
+        </form>
       </div>
     </div>
   );
