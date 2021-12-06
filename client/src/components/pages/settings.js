@@ -14,6 +14,7 @@ const Settings = ({ userId }) => {
   const handleLogout = () => {
     console.log("Logout");
     localStorage.setItem("user_Devcord", JSON.stringify(null));
+    window.location.reload();
   };
   return (
     <div className="layout">

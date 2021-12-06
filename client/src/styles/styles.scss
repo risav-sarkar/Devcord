@@ -438,6 +438,19 @@ body {
     }
     .buttonContainer {
       padding-top: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+
+      .imageBtn {
+        color: $text_white;
+        background-color: transparent;
+        outline: none;
+        border: none;
+        cursor: pointer;
+        font-size: 24px;
+      }
 
       .postBtn {
         padding: 8px 16px;

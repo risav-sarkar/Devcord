@@ -49,17 +49,8 @@ const App = () => {
         />
         <Route
           exact
-          path="/profile/:username"
-          element={
-            user ? (
-              <Profile
-                userId={user._id}
-                followers={user.followers.length}
-                following={user.followings.length}
-                username={user.username}
-              />
-            ) : null
-          }
+          path="/profile/:id"
+          element={user ? <Profile userId={user._id} /> : null}
         />
         <Route
           exact
