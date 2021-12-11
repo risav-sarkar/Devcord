@@ -51,7 +51,9 @@ const Home = ({ userId }) => {
     try {
       await axios.post("http://localhost:8800/api/posts", newPost);
       window.location.reload();
-    } catch (err) {}
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
@@ -141,9 +143,11 @@ const Home = ({ userId }) => {
                 </div>
               </form>
             </div>
-            {posts.map((i) => {
-              return <Post key={i._id} data={i} />;
-            })}
+            {posts
+              ? posts.map((i) => {
+                  return <Post key={i._id} data={i} />;
+                })
+              : null}
           </div>
         </div>
         <div className="rightBar">

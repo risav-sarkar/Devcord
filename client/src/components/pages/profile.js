@@ -32,7 +32,7 @@ const Profile = ({ userId }) => {
     };
     userFetch();
     postFetch();
-  }, [userId]);
+  }, [id]);
 
   return (
     <div className="layout">
@@ -118,7 +118,7 @@ const Profile = ({ userId }) => {
                 </p>
               </div>
 
-              {id != userId ? (
+              {id !== userId ? (
                 <div className="buttonContainer">
                   <button className="btn1">Follow</button>
                   <button className="btn2">Message</button>
