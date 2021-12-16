@@ -16,6 +16,7 @@ $max_width: 1400px;
 
 a {
   text-decoration: none;
+  color: $text_white;
 }
 
 html {
@@ -298,7 +299,6 @@ body {
 .profileContainer {
   .profileSection {
     .coverImage {
-      background-image: url(../assets/Cover.jpg);
       background-size: cover;
       background-repeat: no-repeat;
       background-position: center;
@@ -574,5 +574,118 @@ body {
     padding: 40px;
     border-top-right-radius: 20px;
     border-top-left-radius: 20px;
+  }
+}
+
+.searchContainer {
+  padding: 20px;
+
+  .searchBar {
+    width: 100%;
+    height: 50px;
+    border-radius: 50px;
+    padding: 10px 20px;
+    font-size: 20px;
+    border: none;
+    outline: none;
+    color: $text_white;
+    background-color: $background2;
+  }
+
+  .userGrid {
+    margin-top: 20px;
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+
+    .profileThumbnails {
+      background-color: $background2;
+      border-radius: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+
+      .profileImage {
+        height: 120px;
+        width: 120px;
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        background-color: black;
+        margin-top: 20px;
+
+        img {
+          border-radius: 50%;
+          box-shadow: 0px 0px 50px black;
+          max-width: 100%;
+          max-height: 100%;
+        }
+      }
+
+      .profileDetails {
+        background: linear-gradient(to top, black 80%, rgba(255, 255, 255, 0));
+        border-radius: 18px;
+        width: 100%;
+
+        h1 {
+          text-align: center;
+          padding: 0 10px;
+        }
+
+        .followers {
+          display: flex;
+          justify-content: space-evenly;
+          color: $text_grey;
+          font-size: 14px;
+          div {
+            display: flex;
+            flex-direction: column-reverse;
+            align-items: center;
+          }
+        }
+
+        .btnContainer {
+          display: flex;
+          flex-direction: row;
+          justify-content: center;
+          gap: 10px;
+
+          button {
+            height: 40px;
+            margin: 20px 0;
+            text-align: center;
+            border-radius: 50px;
+            border: none;
+            outline: none;
+            background-color: transparent;
+            cursor: pointer;
+            color: $text_white;
+            padding: 0 15px;
+            letter-spacing: 1px;
+            transition: 0.3s;
+          }
+
+          .btn1 {
+            border: 2px solid $accent1;
+            &:hover {
+              background-color: $accent1_hover;
+              border: 2px solid $accent1_hover;
+            }
+          }
+
+          .btn2 {
+            border: 2px solid $accent1;
+            background-color: $accent1;
+            &:hover {
+              background-color: $accent1_hover;
+              border: 2px solid $accent1_hover;
+            }
+          }
+        }
+      }
+    }
   }
 }

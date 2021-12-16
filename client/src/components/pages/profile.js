@@ -1,4 +1,5 @@
 import ProfilePic from "../../assets/Profile.jpg";
+import CoverPic from "../../assets/Cover.jpg";
 import Post from "../resuableComponents/post";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -89,7 +90,10 @@ const Profile = ({ userId }) => {
         <div className="mainContent">
           <div className="profileContainer">
             <div className="profileSection">
-              <div className="coverImage">
+              <div
+                className="coverImage"
+                style={{ backgroundImage: `url(${CoverPic})` }}
+              >
                 <div className="blur"></div>
                 <div className="profileImageContainer">
                   <div className="profileInfo">
