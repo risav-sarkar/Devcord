@@ -17,6 +17,7 @@ const Search = ({ userId }) => {
   const [users, setUsers] = useState([]);
   const [searchusers, setSearchusers] = useState([]);
   const [search, setSearch] = useState("");
+  const [reload, setReload] = useState(1);
 
   useEffect(() => {
     const userFetch = async () => {
@@ -25,7 +26,7 @@ const Search = ({ userId }) => {
       setUsers(res.data.filter((user) => user._id !== userId));
     };
     userFetch();
-  }, [userId]);
+  }, [userId, reload]);
 
   useEffect(() => {
     if (search === "") return;
@@ -38,8 +39,25 @@ const Search = ({ userId }) => {
       );
     }, 500);
     return () => clearTimeout(timer);
-  }, [search]);
+  }, [search, reload]);
 
+  const handleFollowAndUnfollowUser = async (e) => {
+    try {
+      if (e.followers.includes(userId))
+        await axios.put(`http://localhost:8800/api/users/${e._id}/unfollow`, {
+          userId: userId,
+        });
+      else
+        await axios.put(`http://localhost:8800/api/users/${e._id}/follow`, {
+          userId: userId,
+        });
+    } catch (err) {
+      console.log(err);
+    }
+    setReload(reload === 1 ? 0 : 1);
+  };
+
+  console.log(reload);
   return (
     <div className="layout">
       <div className="navBar">
@@ -133,6 +151,9 @@ const Search = ({ userId }) => {
                             className={
                               e.followers.includes(userId) ? "btn1" : "btn2"
                             }
+                            onClick={() => {
+                              handleFollowAndUnfollowUser(e);
+                            }}
                           >
                             {e.followers.includes(userId)
                               ? "Following"
@@ -176,6 +197,9 @@ const Search = ({ userId }) => {
                             className={
                               e.followers.includes(userId) ? "btn1" : "btn2"
                             }
+                            onClick={() => {
+                              handleFollowAndUnfollowUser(e);
+                            }}
                           >
                             {e.followers.includes(userId)
                               ? "Following"

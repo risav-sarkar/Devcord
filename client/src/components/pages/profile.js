@@ -35,6 +35,22 @@ const Profile = ({ userId }) => {
     postFetch();
   }, [id]);
 
+  const handleFollowAndUnfollowUser = async (e) => {
+    try {
+      if (e.followers.includes(userId))
+        await axios.put(`http://localhost:8800/api/users/${e._id}/unfollow`, {
+          userId: userId,
+        });
+      else
+        await axios.put(`http://localhost:8800/api/users/${e._id}/follow`, {
+          userId: userId,
+        });
+    } catch (err) {
+      console.log(err);
+    }
+    window.location.reload();
+  };
+
   return (
     <div className="layout">
       <div className="navBar">
@@ -122,9 +138,20 @@ const Profile = ({ userId }) => {
                 </p>
               </div>
 
-              {id !== userId ? (
+              {id !== userId && profileuser ? (
                 <div className="buttonContainer">
-                  <button className="btn1">Follow</button>
+                  <button
+                    className={
+                      profileuser.followers.includes(userId) ? "btn1" : "btn2"
+                    }
+                    onClick={() => {
+                      handleFollowAndUnfollowUser(profileuser);
+                    }}
+                  >
+                    {profileuser.followers.includes(userId)
+                      ? "Following"
+                      : "Follow"}
+                  </button>
                   <button className="btn2">Message</button>
                 </div>
               ) : null}
