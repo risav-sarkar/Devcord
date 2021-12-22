@@ -39,7 +39,7 @@ const Search = ({ userId }) => {
       );
     }, 500);
     return () => clearTimeout(timer);
-  }, [search, reload]);
+  }, [users, search, reload]);
 
   const handleFollowAndUnfollowUser = async (e) => {
     try {
