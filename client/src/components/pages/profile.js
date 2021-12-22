@@ -160,7 +160,7 @@ const Profile = ({ userId }) => {
             </div>
             <div className="postContainer">
               {posts.map((i) => {
-                return <Post key={i._id} data={i} />;
+                return <Post key={i._id} data={i} userId={userId} />;
               })}
             </div>
           </div>

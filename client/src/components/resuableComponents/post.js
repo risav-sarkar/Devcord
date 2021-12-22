@@ -5,8 +5,13 @@ import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-const Post = ({ data }) => {
+const Post = ({ userId, data }) => {
   const [user, setUser] = useState(null);
+  const [likes, setLikes] = useState(data.likes.length);
+  const [isLiked, setIsLiked] = useState(
+    data.likes.includes(userId) === true ? true : false
+  );
+
   useEffect(() => {
     const userFetch = async () => {
       const res = await axios.get(
@@ -16,6 +21,16 @@ const Post = ({ data }) => {
     };
     userFetch();
   }, [data.userId]);
+
+  const handleLikeDislike = async (e) => {
+    try {
+      await axios.put(`http://localhost:8800/api/posts/${e}/like`, {
+        userId: userId,
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   return (
     <div className="post">
@@ -40,9 +55,20 @@ const Post = ({ data }) => {
       ) : null}
 
       <div className="buttonContainer">
-        <button>
+        <button
+          onClick={() => {
+            if (isLiked === true) {
+              setLikes(likes - 1);
+              setIsLiked(false);
+            } else {
+              setLikes(likes + 1);
+              setIsLiked(true);
+            }
+            handleLikeDislike(data._id);
+          }}
+        >
           <FontAwesomeIcon icon={faHeart} />
-          {data.likes.length}
+          {likes}
         </button>
       </div>
     </div>

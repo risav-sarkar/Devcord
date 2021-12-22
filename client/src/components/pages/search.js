@@ -57,7 +57,6 @@ const Search = ({ userId }) => {
     setReload(reload === 1 ? 0 : 1);
   };
 
-  console.log(reload);
   return (
     <div className="layout">
       <div className="navBar">
