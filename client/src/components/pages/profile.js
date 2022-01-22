@@ -159,9 +159,12 @@ const Profile = ({ userId }) => {
               <div className="line"></div>
             </div>
             <div className="postContainer">
-              {posts.map((i) => {
-                return <Post key={i._id} data={i} userId={userId} />;
-              })}
+              {posts
+                .slice(0)
+                .reverse()
+                .map((i) => {
+                  return <Post key={i._id} data={i} userId={userId} />;
+                })}
             </div>
           </div>
         </div>

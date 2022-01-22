@@ -33,24 +33,36 @@ const Home = ({ userId }) => {
 
   const submitHandler = async (e) => {
     e.preventDefault();
-    const newPost = {
-      userId: user._id,
-      desc: desc.current.value,
-    };
-    if (file) {
-      const data = new FormData();
-      const fileName = Date.now() + file.name;
-      data.append("name", fileName);
-      data.append("file", file);
-      newPost.img = fileName;
-      console.log(newPost);
-      try {
-        await axios.post("/upload", data);
-      } catch (err) {}
-    }
     try {
-      await axios.post("http://localhost:8800/api/posts", newPost);
-      window.location.reload();
+      if (file) {
+        const data = new FormData();
+        data.append("file", file);
+        data.append("upload_preset", "Devcord");
+
+        const uploadRes = await axios.post(
+          "https://api.cloudinary.com/v1_1/dzgvjykvm/image/upload",
+          data
+        );
+
+        const { url } = uploadRes.data;
+        const newPost = {
+          userId: user._id,
+          desc: desc.current.value,
+          img: [url],
+        };
+
+        await axios.post("http://localhost:8800/api/posts", newPost);
+        window.location.reload();
+      } else {
+        const newPost = {
+          userId: user._id,
+          desc: desc.current.value,
+          img: [],
+        };
+
+        await axios.post("http://localhost:8800/api/posts", newPost);
+        window.location.reload();
+      }
     } catch (err) {
       console.log(err);
     }
@@ -144,9 +156,12 @@ const Home = ({ userId }) => {
               </form>
             </div>
             {posts
-              ? posts.map((i) => {
-                  return <Post key={i._id} data={i} userId={userId} />;
-                })
+              ? posts
+                  .slice(0)
+                  .reverse()
+                  .map((i) => {
+                    return <Post key={i._id} data={i} userId={userId} />;
+                  })
               : null}
           </div>
         </div>

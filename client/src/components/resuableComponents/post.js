@@ -42,15 +42,14 @@ const Post = ({ userId, data }) => {
         </div>
       </div>
 
-      {data.img ? (
-        <div className="mainImage">
-          <img src={data.img} alt="profilePicture" />
-        </div>
-      ) : null}
-
       {data.desc ? (
         <div className="mainText">
           <p>{data.desc}</p>
+        </div>
+      ) : null}
+      {data.img.length > 0 ? (
+        <div className="mainImage">
+          <img src={data.img[0]} alt="profilePicture" />
         </div>
       ) : null}
 
