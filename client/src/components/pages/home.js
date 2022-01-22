@@ -160,7 +160,14 @@ const Home = ({ userId }) => {
                   .slice(0)
                   .reverse()
                   .map((i) => {
-                    return <Post key={i._id} data={i} userId={userId} />;
+                    return (
+                      <Post
+                        key={i._id}
+                        data={i}
+                        userId={userId}
+                        proflie={false}
+                      />
+                    );
                   })
               : null}
           </div>

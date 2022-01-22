@@ -1,11 +1,16 @@
 import ProfilePic from "../../assets/Profile.jpg";
-// import Cover from "../../assets/Cover.jpg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHeart } from "@fortawesome/free-solid-svg-icons";
+import {
+  faHeart,
+  faTrash,
+  faTimes,
+  faCheck,
+} from "@fortawesome/free-solid-svg-icons";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-const Post = ({ userId, data }) => {
+const Post = ({ userId, data, profile }) => {
+  const [modal, setModal] = useState(0);
   const [user, setUser] = useState(null);
   const [likes, setLikes] = useState(data.likes.length);
   const [isLiked, setIsLiked] = useState(
@@ -32,6 +37,15 @@ const Post = ({ userId, data }) => {
     }
   };
 
+  const handleDelete = async () => {
+    try {
+      await axios.delete(`http://localhost:8800/api/posts/${data._id}`);
+    } catch (err) {
+      console.log(err);
+    }
+    window.location.reload();
+  };
+
   return (
     <div className="post">
       <div className="postHeader">
@@ -40,6 +54,40 @@ const Post = ({ userId, data }) => {
           <h3>{user ? user.username : null}</h3>
           <p>Kolkata, India</p>
         </div>
+        {profile ? (
+          <>
+            <button
+              className="deleteBtn"
+              onClick={() => {
+                setModal(1);
+              }}
+            >
+              <FontAwesomeIcon icon={faTrash} />
+            </button>
+            {modal === 1 ? (
+              <div className="modal">
+                <h1>Are you sure?</h1>
+                <div className="btnContainer">
+                  <button
+                    onClick={() => {
+                      setModal(0);
+                    }}
+                  >
+                    <FontAwesomeIcon icon={faTimes} />
+                  </button>
+                  <button
+                    onClick={() => {
+                      handleDelete();
+                    }}
+                    className="tickBtn"
+                  >
+                    <FontAwesomeIcon icon={faCheck} />
+                  </button>
+                </div>
+              </div>
+            ) : null}
+          </>
+        ) : null}
       </div>
 
       {data.desc ? (

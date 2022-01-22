@@ -47,6 +47,7 @@ body {
           align-items: center;
   padding-bottom: 20px;
   gap: 20px;
+  position: relative;
 }
 
 .post .postHeader img {
@@ -57,6 +58,67 @@ body {
 
 .post .postHeader p {
   color: #a8a8a8;
+}
+
+.post .postHeader .deleteBtn {
+  font-size: 22px;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  color: #e0ddfa;
+  cursor: pointer;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+  margin-left: auto;
+  padding: 2px 10px;
+}
+
+.post .postHeader .deleteBtn:hover {
+  color: #a8a8a8;
+}
+
+.post .postHeader .modal {
+  position: absolute;
+  right: 0;
+  background-color: #161618;
+  color: #e0ddfa;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.post .postHeader .modal h1 {
+  font-size: 20px;
+}
+
+.post .postHeader .modal .btnContainer {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-top: 6px;
+}
+
+.post .postHeader .modal .btnContainer button {
+  border-radius: 10px;
+  border: 2px solid #634bff;
+  outline: none;
+  cursor: pointer;
+  padding: 3px 0;
+  background-color: #634bff;
+  color: #e0ddfa;
+  width: 100%;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.post .postHeader .modal .btnContainer button:hover {
+  background-color: #3b1cff;
+  border: 2px solid #3b1cff;
+}
+
+.post .postHeader .modal .btnContainer .tickBtn {
+  background-color: transparent;
 }
 
 .post .mainImage {
