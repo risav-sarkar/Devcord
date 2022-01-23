@@ -201,7 +201,7 @@ const Profile = ({ userId }) => {
             </div>
 
             {modal === 1 ? (
-              <div className="modal">
+              <div className="settingsModal">
                 <div className="modalContainer">
                   <div className="modalContent">
                     <form onSubmit={submitHandler}>

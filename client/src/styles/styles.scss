@@ -466,13 +466,14 @@ body {
     gap: 40px;
     padding: 0 20px 20px 20px;
   }
-  .modal {
+  .settingsModal {
     position: absolute;
     top: 0;
     height: 100%;
     width: 100%;
     background-color: rgba(0, 0, 0, 0.644);
     .modalContainer {
+      padding: 0 10px;
       height: 100vh;
       width: 100%;
       display: grid;

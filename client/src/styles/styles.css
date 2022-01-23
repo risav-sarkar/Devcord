@@ -521,7 +521,7 @@ body {
   padding: 0 20px 20px 20px;
 }
 
-.profileContainer .modal {
+.profileContainer .settingsModal {
   position: absolute;
   top: 0;
   height: 100%;
@@ -529,7 +529,8 @@ body {
   background-color: rgba(0, 0, 0, 0.644);
 }
 
-.profileContainer .modal .modalContainer {
+.profileContainer .settingsModal .modalContainer {
+  padding: 0 10px;
   height: 100vh;
   width: 100%;
   display: -ms-grid;
@@ -537,7 +538,7 @@ body {
   place-items: center;
 }
 
-.profileContainer .modal .modalContainer .modalContent {
+.profileContainer .settingsModal .modalContainer .modalContent {
   background-color: #161618;
   padding: 20px;
   border-radius: 10px;
@@ -545,7 +546,7 @@ body {
   max-width: 450px;
 }
 
-.profileContainer .modal .modalContainer .modalContent form {
+.profileContainer .settingsModal .modalContainer .modalContent form {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -555,12 +556,12 @@ body {
           flex-direction: column;
 }
 
-.profileContainer .modal .modalContainer .modalContent p {
+.profileContainer .settingsModal .modalContainer .modalContent p {
   font-size: 24px;
   margin-bottom: 5px;
 }
 
-.profileContainer .modal .modalContainer .modalContent input {
+.profileContainer .settingsModal .modalContainer .modalContent input {
   margin-bottom: 8px;
   padding: 0 8px 8px 8px;
   font-size: 18px;
@@ -573,11 +574,11 @@ body {
   transition: 0.3s;
 }
 
-.profileContainer .modal .modalContainer .modalContent input:focus {
+.profileContainer .settingsModal .modalContainer .modalContent input:focus {
   border-bottom: 2px solid #634bff;
 }
 
-.profileContainer .modal .modalContainer .modalContent .btnContainer {
+.profileContainer .settingsModal .modalContainer .modalContent .btnContainer {
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: 1fr 1fr;
@@ -586,7 +587,7 @@ body {
   margin-top: 8px;
 }
 
-.profileContainer .modal .modalContainer .modalContent .btnContainer button {
+.profileContainer .settingsModal .modalContainer .modalContent .btnContainer button {
   border-radius: 10px;
   border: 2px solid #634bff;
   outline: none;
@@ -599,12 +600,12 @@ body {
   transition: 0.3s;
 }
 
-.profileContainer .modal .modalContainer .modalContent .btnContainer button:hover {
+.profileContainer .settingsModal .modalContainer .modalContent .btnContainer button:hover {
   background-color: #3b1cff;
   border: 2px solid #3b1cff;
 }
 
-.profileContainer .modal .modalContainer .modalContent .btnContainer .tickBtn {
+.profileContainer .settingsModal .modalContainer .modalContent .btnContainer .tickBtn {
   background-color: transparent;
 }
 
