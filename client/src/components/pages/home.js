@@ -18,7 +18,7 @@ import axios from "axios";
 const Home = ({ userId }) => {
   const [posts, setPosts] = useState([]);
   const [file, setFile] = useState(null);
-  const desc = useRef();
+  const desc = useRef("");
   const { user } = useContext(AuthContext);
 
   useEffect(() => {
@@ -33,6 +33,7 @@ const Home = ({ userId }) => {
 
   const submitHandler = async (e) => {
     e.preventDefault();
+    if (!file && !desc.current.value) return;
     try {
       if (file) {
         const data = new FormData();
@@ -125,7 +126,7 @@ const Home = ({ userId }) => {
             <div className="createPostContainer">
               <div className="createPostHeader">
                 <img src={ProfilePic} alt="profilePicture"></img>
-                <h3>Risav Sarkar</h3>
+                <h3>{user.username}</h3>
               </div>
 
               <form className="createPostContent" onSubmit={submitHandler}>
@@ -134,7 +135,6 @@ const Home = ({ userId }) => {
                     type="text"
                     placeholder={"What's on your mind " + user.username + "?"}
                     ref={desc}
-                    required
                   />
                   <input
                     type="file"

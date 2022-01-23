@@ -394,6 +394,10 @@ body {
   }
 }
 
+.profileContainer {
+  position: relative;
+}
+
 .profileContainer .profileSection .coverImage {
   background-size: cover;
   background-repeat: no-repeat;
@@ -491,11 +495,117 @@ body {
   background: #634bff;
 }
 
+.profileContainer .profileSection .profileSettingsBtn {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  font-size: 20px;
+  color: #e0ddfa;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 10px;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.profileContainer .profileSection .profileSettingsBtn:hover {
+  color: #a8a8a8;
+}
+
 .profileContainer .postContainer {
   display: -ms-grid;
   display: grid;
   gap: 40px;
   padding: 0 20px 20px 20px;
+}
+
+.profileContainer .modal {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.644);
+}
+
+.profileContainer .modal .modalContainer {
+  height: 100vh;
+  width: 100%;
+  display: -ms-grid;
+  display: grid;
+  place-items: center;
+}
+
+.profileContainer .modal .modalContainer .modalContent {
+  background-color: #161618;
+  padding: 20px;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 450px;
+}
+
+.profileContainer .modal .modalContainer .modalContent form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.profileContainer .modal .modalContainer .modalContent p {
+  font-size: 24px;
+  margin-bottom: 5px;
+}
+
+.profileContainer .modal .modalContainer .modalContent input {
+  margin-bottom: 8px;
+  padding: 0 8px 8px 8px;
+  font-size: 18px;
+  background-color: transparent;
+  color: #e0ddfa;
+  border: none;
+  outline: none;
+  border-bottom: 2px solid #e0ddfa;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.profileContainer .modal .modalContainer .modalContent input:focus {
+  border-bottom: 2px solid #634bff;
+}
+
+.profileContainer .modal .modalContainer .modalContent .btnContainer {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.profileContainer .modal .modalContainer .modalContent .btnContainer button {
+  border-radius: 10px;
+  border: 2px solid #634bff;
+  outline: none;
+  cursor: pointer;
+  padding: 5px 0;
+  background-color: #634bff;
+  color: #e0ddfa;
+  width: 100%;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.profileContainer .modal .modalContainer .modalContent .btnContainer button:hover {
+  background-color: #3b1cff;
+  border: 2px solid #3b1cff;
+}
+
+.profileContainer .modal .modalContainer .modalContent .btnContainer .tickBtn {
+  background-color: transparent;
 }
 
 .homeContainer {

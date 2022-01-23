@@ -11,7 +11,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import Rightbar from "../resuableComponents/rightbar";
 import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useParams } from "react-router";
 import axios from "axios";
 
@@ -19,6 +19,12 @@ const Profile = ({ userId }) => {
   const { id } = useParams();
   const [posts, setPosts] = useState([]);
   const [profileuser, setProfileUser] = useState(null);
+  const [modal, setModal] = useState(0);
+  const [profilePic, setProfilePic] = useState(null);
+  const [coverPic, setCoverPic] = useState(null);
+
+  const desc = useRef("");
+  const city = useRef("");
 
   useEffect(() => {
     const postFetch = async () => {
@@ -51,6 +57,20 @@ const Profile = ({ userId }) => {
     window.location.reload();
   };
 
+  const submitHandler = (e) => {
+    e.preventDefault();
+    const updateUser = async () => {
+      const user = {
+        userId,
+        desc: desc.current.value,
+        city: city.current.value,
+      };
+
+      await axios.put(`http://localhost:8800/api/users/${userId}`, user);
+      window.location.reload();
+    };
+    updateUser();
+  };
   return (
     <div className="layout">
       <div className="navBar">
@@ -128,14 +148,13 @@ const Profile = ({ userId }) => {
 
               <div className="profileTitle">
                 <h2>{profileuser ? profileuser.username : null}</h2>
-                <h4 className="textGrey">Kolkata, India</h4>
+                <h4 className="textGrey">
+                  {profileuser ? profileuser.city : null}
+                </h4>
               </div>
 
               <div className="profileDesc">
-                <p>
-                  Lorem Ipsum is simply dummy text of the printing and
-                  typesetting
-                </p>
+                <p>{profileuser ? profileuser.desc : null}</p>
               </div>
 
               {id !== userId && profileuser ? (
@@ -157,7 +176,19 @@ const Profile = ({ userId }) => {
               ) : null}
 
               <div className="line"></div>
+
+              {userId === id ? (
+                <button
+                  className="profileSettingsBtn"
+                  onClick={() => {
+                    setModal(1);
+                  }}
+                >
+                  <FontAwesomeIcon icon={faCog} />
+                </button>
+              ) : null}
             </div>
+
             <div className="postContainer">
               {posts
                 .slice(0)
@@ -168,6 +199,40 @@ const Profile = ({ userId }) => {
                   );
                 })}
             </div>
+
+            {modal === 1 ? (
+              <div className="modal">
+                <div className="modalContainer">
+                  <div className="modalContent">
+                    <form onSubmit={submitHandler}>
+                      <p>Add Description</p>
+                      <input
+                        type="text"
+                        placeholder={"Binging Netflix!"}
+                        ref={desc}
+                      />
+                      <p>Add City</p>
+                      <input
+                        type="text"
+                        placeholder={"Kolkata, India"}
+                        ref={city}
+                      />
+                      <div className="btnContainer">
+                        <button
+                          className="tickBtn"
+                          onClick={() => {
+                            setModal(0);
+                          }}
+                        >
+                          Cancel
+                        </button>
+                        <button type="submit">Submit</button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            ) : null}
           </div>
         </div>
         <div className="rightBar">
