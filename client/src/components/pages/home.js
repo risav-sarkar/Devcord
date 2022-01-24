@@ -73,8 +73,11 @@ const Home = ({ userId }) => {
     <div className="layout">
       <div className="navBar">
         <div className="navHeader">
-          <img src={ProfilePic} alt="profilePicture"></img>
-          <p>Risav Sarkar</p>
+          <img
+            src={user.profilePicture ? user.profilePicture : ProfilePic}
+            alt="profilePicture"
+          ></img>
+          <p>{user.username}</p>
         </div>
 
         <div className="navButtons">
@@ -125,7 +128,10 @@ const Home = ({ userId }) => {
           <div className="homeContainer">
             <div className="createPostContainer">
               <div className="createPostHeader">
-                <img src={ProfilePic} alt="profilePicture"></img>
+                <img
+                  src={user.profilePicture ? user.profilePicture : ProfilePic}
+                  alt="profilePicture"
+                ></img>
                 <h3>{user.username}</h3>
               </div>
 

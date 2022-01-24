@@ -10,7 +10,8 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import Rightbar from "../resuableComponents/rightbar";
 import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
+import { AuthContext } from "../../context/AuthContext";
 import axios from "axios";
 
 const Search = ({ userId }) => {
@@ -18,6 +19,8 @@ const Search = ({ userId }) => {
   const [searchusers, setSearchusers] = useState([]);
   const [search, setSearch] = useState("");
   const [reload, setReload] = useState(1);
+
+  const { user } = useContext(AuthContext);
 
   useEffect(() => {
     const userFetch = async () => {
@@ -61,8 +64,11 @@ const Search = ({ userId }) => {
     <div className="layout">
       <div className="navBar">
         <div className="navHeader">
-          <img src={ProfilePic} alt="profilePicture"></img>
-          <p>Risav Sarkar</p>
+          <img
+            src={user.profilePicture ? user.profilePicture : ProfilePic}
+            alt="profilePicture"
+          ></img>
+          <p>{user.username}</p>
         </div>
 
         <div className="navButtons">
@@ -125,10 +131,17 @@ const Search = ({ userId }) => {
                     <div
                       className="profileThumbnails"
                       key={e._id}
-                      style={{ backgroundImage: `url(${CoverPic})` }}
+                      style={{
+                        backgroundImage: `url(${
+                          e.coverPicture ? e.coverPicture : CoverPic
+                        })`,
+                      }}
                     >
                       <div className="profileImage">
-                        <img src={ProfilePic} alt="profilePicture"></img>
+                        <img
+                          src={e.profilePicture ? e.profilePicture : ProfilePic}
+                          alt="profilePicture"
+                        ></img>
                       </div>
                       <div className="profileDetails">
                         <h1>{e.username}</h1>
@@ -171,10 +184,17 @@ const Search = ({ userId }) => {
                     <div
                       className="profileThumbnails"
                       key={e._id}
-                      style={{ backgroundImage: `url(${CoverPic})` }}
+                      style={{
+                        backgroundImage: `url(${
+                          e.coverPicture ? e.coverPicture : CoverPic
+                        })`,
+                      }}
                     >
                       <div className="profileImage">
-                        <img src={ProfilePic} alt="profilePicture"></img>
+                        <img
+                          src={e.profilePicture ? e.profilePicture : ProfilePic}
+                          alt="profilePicture"
+                        ></img>
                       </div>
                       <div className="profileDetails">
                         <h1>{e.username}</h1>

@@ -49,10 +49,19 @@ const Post = ({ userId, data, profile }) => {
   return (
     <div className="post">
       <div className="postHeader">
-        <img src={ProfilePic} alt="profilePicture" />
+        <img
+          src={
+            user
+              ? user.profilePicture
+                ? user.profilePicture
+                : ProfilePic
+              : ProfilePic
+          }
+          alt="profilePicture"
+        />
         <div>
           <h3>{user ? user.username : null}</h3>
-          <p>Kolkata, India</p>
+          <p>{user ? (user.city ? user.city : null) : null}</p>
         </div>
         {profile ? (
           <>

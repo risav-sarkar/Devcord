@@ -11,11 +11,14 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import Rightbar from "../resuableComponents/rightbar";
 import { Link } from "react-router-dom";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, useContext } from "react";
 import { useParams } from "react-router";
+import { AuthContext } from "../../context/AuthContext";
 import axios from "axios";
 
 const Profile = ({ userId }) => {
+  const { user } = useContext(AuthContext);
+
   const { id } = useParams();
   const [posts, setPosts] = useState([]);
   const [profileuser, setProfileUser] = useState(null);
@@ -37,9 +40,10 @@ const Profile = ({ userId }) => {
       const res = await axios.get(`http://localhost:8800/api/users/${id}`);
       setProfileUser(res.data);
     };
-    userFetch();
+    if (id !== user._id) userFetch();
+    else setProfileUser(user);
     postFetch();
-  }, [id]);
+  }, [user, id]);
 
   const handleFollowAndUnfollowUser = async (e) => {
     try {
@@ -79,6 +83,11 @@ const Profile = ({ userId }) => {
             );
 
             const { url } = uploadRes.data;
+
+            let localUser = JSON.parse(localStorage.getItem("user_Devcord"));
+            localUser.profilePicture = url;
+            localStorage.setItem("user_Devcord", JSON.stringify(localUser));
+
             await axios.put(`http://localhost:8800/api/users/${userId}`, {
               userId,
               profilePicture: url,
@@ -99,6 +108,11 @@ const Profile = ({ userId }) => {
             );
 
             const { url } = uploadRes.data;
+
+            let localUser = JSON.parse(localStorage.getItem("user_Devcord"));
+            localUser.coverPicture = url;
+            localStorage.setItem("user_Devcord", JSON.stringify(localUser));
+
             await axios.put(`http://localhost:8800/api/users/${userId}`, {
               userId,
               coverPicture: url,
@@ -107,22 +121,31 @@ const Profile = ({ userId }) => {
           submit();
         }
 
-        if (desc.current.value || city.current.value)
+        if (desc.current.value || city.current.value) {
+          let localUser = JSON.parse(localStorage.getItem("user_Devcord"));
+          localUser.desc = user.desc;
+          localUser.city = user.city;
+          localStorage.setItem("user_Devcord", JSON.stringify(localUser));
           await axios.put(`http://localhost:8800/api/users/${userId}`, user);
+        }
       } catch (err) {}
     };
     updateUser();
     const timer = setTimeout(() => {
       window.location.reload();
-    }, 1000);
+    }, 3000);
     return () => clearTimeout(timer);
   };
+
   return (
     <div className="layout">
       <div className="navBar">
         <div className="navHeader">
-          <img src={ProfilePic} alt="profilePicture"></img>
-          <p>Risav Sarkar</p>
+          <img
+            src={user.profilePicture ? user.profilePicture : ProfilePic}
+            alt="profilePicture"
+          ></img>
+          <p>{user.username}</p>
         </div>
 
         <div className="navButtons">
@@ -216,9 +239,13 @@ const Profile = ({ userId }) => {
                 </h4>
               </div>
 
-              <div className="profileDesc">
-                <p>{profileuser ? profileuser.desc : null}</p>
-              </div>
+              {profileuser ? (
+                profileuser.desc ? (
+                  <div className="profileDesc">
+                    <p>{profileuser.desc}</p>
+                  </div>
+                ) : null
+              ) : null}
 
               {id !== userId && profileuser ? (
                 <div className="buttonContainer">
@@ -280,7 +307,6 @@ const Profile = ({ userId }) => {
                       <input
                         type="file"
                         style={{ display: "none" }}
-                        id="fileUpload"
                         accept=".png,.jpeg,.jpg"
                         id="profilePicUpload"
                         onChange={(e) => setProfilePic(e.target.files[0])}
@@ -288,7 +314,6 @@ const Profile = ({ userId }) => {
                       <input
                         type="file"
                         style={{ display: "none" }}
-                        id="fileUpload"
                         accept=".png,.jpeg,.jpg"
                         id="coverPicUpload"
                         onChange={(e) => setCoverPic(e.target.files[0])}

@@ -8,15 +8,21 @@ import {
   faCog,
 } from "@fortawesome/free-solid-svg-icons";
 import Rightbar from "../resuableComponents/rightbar";
+import { AuthContext } from "../../context/AuthContext";
 import { Link } from "react-router-dom";
+import { useContext } from "react";
 
 const Messages = ({ userId }) => {
+  const { user } = useContext(AuthContext);
   return (
     <div className="layout">
       <div className="navBar">
         <div className="navHeader">
-          <img src={ProfilePic} alt="profilePicture"></img>
-          <p>Risav Sarkar</p>
+          <img
+            src={user.profilePicture ? user.profilePicture : ProfilePic}
+            alt="profilePicture"
+          ></img>
+          <p>{user.username}</p>
         </div>
 
         <div className="navButtons">
