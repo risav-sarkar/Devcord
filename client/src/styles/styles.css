@@ -546,7 +546,32 @@ body {
   max-width: 450px;
 }
 
+.profileContainer .settingsModal .modalContainer .modalContent .labelContainer {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.profileContainer .settingsModal .modalContainer .modalContent .labelContainer label {
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 10px;
+  cursor: pointer;
+  width: 100%;
+  border: 2px solid #634bff;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.profileContainer .settingsModal .modalContainer .modalContent .labelContainer label:hover {
+  border: 2px solid #3b1cff;
+  background-color: #3b1cff;
+}
+
 .profileContainer .settingsModal .modalContainer .modalContent form {
+  margin-top: 8px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;

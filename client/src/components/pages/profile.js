@@ -60,16 +60,62 @@ const Profile = ({ userId }) => {
   const submitHandler = (e) => {
     e.preventDefault();
     const updateUser = async () => {
-      const user = {
-        userId,
-        desc: desc.current.value,
-        city: city.current.value,
-      };
+      try {
+        const user = {
+          userId,
+          desc: desc.current.value ? desc.current.value : profileuser.desc,
+          city: city.current.value ? city.current.value : profileuser.city,
+        };
 
-      await axios.put(`http://localhost:8800/api/users/${userId}`, user);
-      window.location.reload();
+        if (profilePic) {
+          const submit = async () => {
+            const data = new FormData();
+            data.append("file", profilePic);
+            data.append("upload_preset", "Devcord");
+
+            const uploadRes = await axios.post(
+              "https://api.cloudinary.com/v1_1/dzgvjykvm/image/upload",
+              data
+            );
+
+            const { url } = uploadRes.data;
+            await axios.put(`http://localhost:8800/api/users/${userId}`, {
+              userId,
+              profilePicture: url,
+            });
+          };
+          submit();
+        }
+
+        if (coverPic) {
+          const submit = async () => {
+            const data = new FormData();
+            data.append("file", coverPic);
+            data.append("upload_preset", "Devcord");
+
+            const uploadRes = await axios.post(
+              "https://api.cloudinary.com/v1_1/dzgvjykvm/image/upload",
+              data
+            );
+
+            const { url } = uploadRes.data;
+            await axios.put(`http://localhost:8800/api/users/${userId}`, {
+              userId,
+              coverPicture: url,
+            });
+          };
+          submit();
+        }
+
+        if (desc.current.value || city.current.value)
+          await axios.put(`http://localhost:8800/api/users/${userId}`, user);
+      } catch (err) {}
     };
     updateUser();
+    const timer = setTimeout(() => {
+      window.location.reload();
+    }, 1000);
+    return () => clearTimeout(timer);
   };
   return (
     <div className="layout">
@@ -128,7 +174,15 @@ const Profile = ({ userId }) => {
             <div className="profileSection">
               <div
                 className="coverImage"
-                style={{ backgroundImage: `url(${CoverPic})` }}
+                style={{
+                  backgroundImage: `url(${
+                    profileuser
+                      ? profileuser.coverPicture
+                        ? profileuser.coverPicture
+                        : CoverPic
+                      : CoverPic
+                  })`,
+                }}
               >
                 <div className="blur"></div>
                 <div className="profileImageContainer">
@@ -137,7 +191,16 @@ const Profile = ({ userId }) => {
                     <p className="textGrey">Followers</p>
                   </div>
                   <div className="profileImage">
-                    <img src={ProfilePic} alt="profilePicture"></img>
+                    <img
+                      src={
+                        profileuser
+                          ? profileuser.profilePicture
+                            ? profileuser.profilePicture
+                            : ProfilePic
+                          : ProfilePic
+                      }
+                      alt="profilePicture"
+                    ></img>
                   </div>
                   <div className="profileInfo">
                     <p>{profileuser ? profileuser.followings.length : null}</p>
@@ -204,7 +267,32 @@ const Profile = ({ userId }) => {
               <div className="settingsModal">
                 <div className="modalContainer">
                   <div className="modalContent">
+                    <div className="labelContainer">
+                      <label className="tickBtn" htmlFor="profilePicUpload">
+                        Change Profile Image
+                      </label>
+                      <label className="tickBtn" htmlFor="coverPicUpload">
+                        Change Cover Image
+                      </label>
+                    </div>
+
                     <form onSubmit={submitHandler}>
+                      <input
+                        type="file"
+                        style={{ display: "none" }}
+                        id="fileUpload"
+                        accept=".png,.jpeg,.jpg"
+                        id="profilePicUpload"
+                        onChange={(e) => setProfilePic(e.target.files[0])}
+                      />
+                      <input
+                        type="file"
+                        style={{ display: "none" }}
+                        id="fileUpload"
+                        accept=".png,.jpeg,.jpg"
+                        id="coverPicUpload"
+                        onChange={(e) => setCoverPic(e.target.files[0])}
+                      />
                       <p>Add Description</p>
                       <input
                         type="text"

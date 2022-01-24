@@ -486,7 +486,28 @@ body {
         width: 100%;
         max-width: 450px;
 
+        .labelContainer {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 8px;
+          label {
+            text-align: center;
+            padding: 5px 0;
+            border-radius: 10px;
+            cursor: pointer;
+            width: 100%;
+            border: 2px solid $accent1;
+            transition: 0.3s;
+
+            &:hover {
+              border: 2px solid $accent1_hover;
+              background-color: $accent1_hover;
+            }
+          }
+        }
+
         form {
+          margin-top: 8px;
           display: flex;
           flex-direction: column;
         }
