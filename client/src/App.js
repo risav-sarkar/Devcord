@@ -20,7 +20,6 @@ import { AuthContext } from "./context/AuthContext";
 
 const App = () => {
   const { user } = useContext(AuthContext);
-  console.log(user);
 
   return (
     <Router>
@@ -28,7 +27,7 @@ const App = () => {
         <Route
           exact
           path="/"
-          element={user ? <Home userId={user._id} /> : <Navigate to="/login" />}
+          element={user ? <Home /> : <Navigate to="/login" />}
         />
         <Route
           exact
@@ -43,28 +42,18 @@ const App = () => {
         <Route
           exact
           path="/messages"
-          element={
-            user ? <Messages userId={user._id} /> : <Navigate to="/login" />
-          }
+          element={user ? <Messages /> : <Navigate to="/login" />}
         />
-        <Route
-          exact
-          path="/profile/:id"
-          element={user ? <Profile userId={user._id} /> : null}
-        />
+        <Route exact path="/profile/:id" element={user ? <Profile /> : null} />
         <Route
           exact
           path="/search"
-          element={
-            user ? <Search userId={user._id} /> : <Navigate to="/login" />
-          }
+          element={user ? <Search /> : <Navigate to="/login" />}
         />
         <Route
           exact
           path="/settings"
-          element={
-            user ? <Settings userId={user._id} /> : <Navigate to="/login" />
-          }
+          element={user ? <Settings /> : <Navigate to="/login" />}
         />
       </Routes>
     </Router>

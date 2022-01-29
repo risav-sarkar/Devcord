@@ -1,20 +1,13 @@
 import ProfilePic from "../../assets/Profile.jpg";
 import CoverPic from "../../assets/Cover.jpg";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faHome,
-  faEnvelope,
-  faSearch,
-  faUserCircle,
-  faCog,
-} from "@fortawesome/free-solid-svg-icons";
 import Rightbar from "../resuableComponents/rightbar";
 import { Link } from "react-router-dom";
 import { useEffect, useState, useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import axios from "axios";
+import Navbar from "../resuableComponents/navbar";
 
-const Search = ({ userId }) => {
+const Search = () => {
   const [users, setUsers] = useState([]);
   const [searchusers, setSearchusers] = useState([]);
   const [search, setSearch] = useState("");
@@ -26,10 +19,10 @@ const Search = ({ userId }) => {
     const userFetch = async () => {
       const res = await axios.get(`http://localhost:8800/api/users/`);
 
-      setUsers(res.data.filter((user) => user._id !== userId));
+      setUsers(res.data.filter((u) => u._id !== user._id));
     };
     userFetch();
-  }, [userId, reload]);
+  }, [user._id, reload]);
 
   useEffect(() => {
     if (search === "") return;
@@ -46,13 +39,13 @@ const Search = ({ userId }) => {
 
   const handleFollowAndUnfollowUser = async (e) => {
     try {
-      if (e.followers.includes(userId))
+      if (e.followers.includes(user._id))
         await axios.put(`http://localhost:8800/api/users/${e._id}/unfollow`, {
-          userId: userId,
+          userId: user._id,
         });
       else
         await axios.put(`http://localhost:8800/api/users/${e._id}/follow`, {
-          userId: userId,
+          userId: user._id,
         });
     } catch (err) {
       console.log(err);
@@ -62,57 +55,7 @@ const Search = ({ userId }) => {
 
   return (
     <div className="layout">
-      <div className="navBar">
-        <div className="navHeader">
-          <img
-            src={user.profilePicture ? user.profilePicture : ProfilePic}
-            alt="profilePicture"
-          ></img>
-          <p>{user.username}</p>
-        </div>
-
-        <div className="navButtons">
-          <Link to="/">
-            <button>
-              <FontAwesomeIcon icon={faHome} />
-              <p>Home</p>
-            </button>
-          </Link>
-
-          <Link to="/messages">
-            <button>
-              <FontAwesomeIcon icon={faEnvelope} />
-              <p>Messages</p>
-            </button>
-          </Link>
-
-          <Link to={`/profile/${userId}`}>
-            <button>
-              <FontAwesomeIcon icon={faUserCircle} />
-              <p>Profile</p>
-            </button>
-          </Link>
-
-          <Link to="/search">
-            <button className="selected">
-              <FontAwesomeIcon icon={faSearch} />
-              <p>Search</p>
-            </button>
-          </Link>
-
-          <Link to="/settings">
-            <button>
-              <FontAwesomeIcon icon={faCog} />
-              <p>Settings</p>
-            </button>
-          </Link>
-        </div>
-
-        <div className="navFooter">
-          <img src={ProfilePic} alt="profilePicture"></img>
-          <h1>Devcord</h1>
-        </div>
-      </div>
+      <Navbar btn={4} />
 
       <div className="content">
         <div className="mainContent">
@@ -161,13 +104,13 @@ const Search = ({ userId }) => {
                           </Link>
                           <button
                             className={
-                              e.followers.includes(userId) ? "btn1" : "btn2"
+                              e.followers.includes(user._id) ? "btn1" : "btn2"
                             }
                             onClick={() => {
                               handleFollowAndUnfollowUser(e);
                             }}
                           >
-                            {e.followers.includes(userId)
+                            {e.followers.includes(user._id)
                               ? "Following"
                               : "Follow"}
                           </button>
@@ -214,13 +157,13 @@ const Search = ({ userId }) => {
                           </Link>
                           <button
                             className={
-                              e.followers.includes(userId) ? "btn1" : "btn2"
+                              e.followers.includes(user._id) ? "btn1" : "btn2"
                             }
                             onClick={() => {
                               handleFollowAndUnfollowUser(e);
                             }}
                           >
-                            {e.followers.includes(userId)
+                            {e.followers.includes(user._id)
                               ? "Following"
                               : "Follow"}
                           </button>

@@ -2,21 +2,15 @@ import ProfilePic from "../../assets/Profile.jpg";
 import CoverPic from "../../assets/Cover.jpg";
 import Post from "../resuableComponents/post";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faHome,
-  faEnvelope,
-  faSearch,
-  faUserCircle,
-  faCog,
-} from "@fortawesome/free-solid-svg-icons";
+import { faCog } from "@fortawesome/free-solid-svg-icons";
 import Rightbar from "../resuableComponents/rightbar";
-import { Link } from "react-router-dom";
 import { useEffect, useState, useRef, useContext } from "react";
 import { useParams } from "react-router";
 import { AuthContext } from "../../context/AuthContext";
 import axios from "axios";
+import Navbar from "../resuableComponents/navbar";
 
-const Profile = ({ userId }) => {
+const Profile = () => {
   const { user } = useContext(AuthContext);
 
   const { id } = useParams();
@@ -40,20 +34,19 @@ const Profile = ({ userId }) => {
       const res = await axios.get(`http://localhost:8800/api/users/${id}`);
       setProfileUser(res.data);
     };
-    if (id !== user._id) userFetch();
-    else setProfileUser(user);
+    userFetch();
     postFetch();
   }, [user, id]);
 
   const handleFollowAndUnfollowUser = async (e) => {
     try {
-      if (e.followers.includes(userId))
+      if (e.followers.includes(user._id))
         await axios.put(`http://localhost:8800/api/users/${e._id}/unfollow`, {
-          userId: userId,
+          userId: user._id,
         });
       else
         await axios.put(`http://localhost:8800/api/users/${e._id}/follow`, {
-          userId: userId,
+          userId: user._id,
         });
     } catch (err) {
       console.log(err);
@@ -65,12 +58,6 @@ const Profile = ({ userId }) => {
     e.preventDefault();
     const updateUser = async () => {
       try {
-        const user = {
-          userId,
-          desc: desc.current.value ? desc.current.value : profileuser.desc,
-          city: city.current.value ? city.current.value : profileuser.city,
-        };
-
         if (profilePic) {
           const submit = async () => {
             const data = new FormData();
@@ -88,8 +75,8 @@ const Profile = ({ userId }) => {
             localUser.profilePicture = url;
             localStorage.setItem("user_Devcord", JSON.stringify(localUser));
 
-            await axios.put(`http://localhost:8800/api/users/${userId}`, {
-              userId,
+            await axios.put(`http://localhost:8800/api/users/${user._id}`, {
+              userId: user._id,
               profilePicture: url,
             });
           };
@@ -113,83 +100,45 @@ const Profile = ({ userId }) => {
             localUser.coverPicture = url;
             localStorage.setItem("user_Devcord", JSON.stringify(localUser));
 
-            await axios.put(`http://localhost:8800/api/users/${userId}`, {
-              userId,
+            await axios.put(`http://localhost:8800/api/users/${user._id}`, {
+              userId: user._id,
               coverPicture: url,
             });
           };
           submit();
         }
 
-        if (desc.current.value || city.current.value) {
+        if (desc.current.value) {
           let localUser = JSON.parse(localStorage.getItem("user_Devcord"));
           localUser.desc = user.desc;
+          localStorage.setItem("user_Devcord", JSON.stringify(localUser));
+          await axios.put(`http://localhost:8800/api/users/${user._id}`, {
+            userId: user._id,
+            desc: desc.current.value,
+          });
+        }
+
+        if (city.current.value) {
+          let localUser = JSON.parse(localStorage.getItem("user_Devcord"));
           localUser.city = user.city;
           localStorage.setItem("user_Devcord", JSON.stringify(localUser));
-          await axios.put(`http://localhost:8800/api/users/${userId}`, user);
+          await axios.put(`http://localhost:8800/api/users/${user._id}`, {
+            userId: user._id,
+            city: city.current.value,
+          });
         }
       } catch (err) {}
     };
     updateUser();
     const timer = setTimeout(() => {
       window.location.reload();
-    }, 3000);
+    }, 5000);
     return () => clearTimeout(timer);
   };
 
   return (
     <div className="layout">
-      <div className="navBar">
-        <div className="navHeader">
-          <img
-            src={user.profilePicture ? user.profilePicture : ProfilePic}
-            alt="profilePicture"
-          ></img>
-          <p>{user.username}</p>
-        </div>
-
-        <div className="navButtons">
-          <Link to="/">
-            <button>
-              <FontAwesomeIcon icon={faHome} />
-              <p>Home</p>
-            </button>
-          </Link>
-
-          <Link to="/messages">
-            <button>
-              <FontAwesomeIcon icon={faEnvelope} />
-              <p>Messages</p>
-            </button>
-          </Link>
-
-          <Link to={`/profile/${userId}`}>
-            <button className="selected">
-              <FontAwesomeIcon icon={faUserCircle} />
-              <p>Profile</p>
-            </button>
-          </Link>
-
-          <Link to="/search">
-            <button>
-              <FontAwesomeIcon icon={faSearch} />
-              <p>Search</p>
-            </button>
-          </Link>
-
-          <Link to="/settings">
-            <button>
-              <FontAwesomeIcon icon={faCog} />
-              <p>Settings</p>
-            </button>
-          </Link>
-        </div>
-
-        <div className="navFooter">
-          <img src={ProfilePic} alt="profilePicture"></img>
-          <h1>Devcord</h1>
-        </div>
-      </div>
+      <Navbar btn={3} />
 
       <div className="content">
         <div className="mainContent">
@@ -247,17 +196,17 @@ const Profile = ({ userId }) => {
                 ) : null
               ) : null}
 
-              {id !== userId && profileuser ? (
+              {id !== user._id && profileuser ? (
                 <div className="buttonContainer">
                   <button
                     className={
-                      profileuser.followers.includes(userId) ? "btn1" : "btn2"
+                      profileuser.followers.includes(user._id) ? "btn1" : "btn2"
                     }
                     onClick={() => {
                       handleFollowAndUnfollowUser(profileuser);
                     }}
                   >
-                    {profileuser.followers.includes(userId)
+                    {profileuser.followers.includes(user._id)
                       ? "Following"
                       : "Follow"}
                   </button>
@@ -267,7 +216,7 @@ const Profile = ({ userId }) => {
 
               <div className="line"></div>
 
-              {userId === id ? (
+              {user._id === id ? (
                 <button
                   className="profileSettingsBtn"
                   onClick={() => {
@@ -285,7 +234,12 @@ const Profile = ({ userId }) => {
                 .reverse()
                 .map((i) => {
                   return (
-                    <Post key={i._id} data={i} userId={userId} profile={true} />
+                    <Post
+                      key={i._id}
+                      data={i}
+                      userId={user._id}
+                      profile={user._id === id ? true : false}
+                    />
                   );
                 })}
             </div>

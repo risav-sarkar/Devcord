@@ -1,21 +1,14 @@
 import ProfilePic from "../../assets/Profile.jpg";
 import Post from "../resuableComponents/post";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faHome,
-  faEnvelope,
-  faSearch,
-  faUserCircle,
-  faCog,
-  faImages,
-} from "@fortawesome/free-solid-svg-icons";
+import { faImages } from "@fortawesome/free-solid-svg-icons";
 import Rightbar from "../resuableComponents/rightbar";
-import { Link } from "react-router-dom";
 import { useContext, useEffect, useRef, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import axios from "axios";
+import Navbar from "../resuableComponents/navbar";
 
-const Home = ({ userId }) => {
+const Home = () => {
   const [posts, setPosts] = useState([]);
   const [file, setFile] = useState(null);
   const desc = useRef("");
@@ -24,12 +17,12 @@ const Home = ({ userId }) => {
   useEffect(() => {
     const postFetch = async () => {
       const res = await axios.get(
-        `http://localhost:8800/api/posts/timeline/${userId}`
+        `http://localhost:8800/api/posts/timeline/${user._id}`
       );
       setPosts(res.data);
     };
     postFetch();
-  }, [userId]);
+  }, [user._id]);
 
   const submitHandler = async (e) => {
     e.preventDefault();
@@ -71,57 +64,7 @@ const Home = ({ userId }) => {
 
   return (
     <div className="layout">
-      <div className="navBar">
-        <div className="navHeader">
-          <img
-            src={user.profilePicture ? user.profilePicture : ProfilePic}
-            alt="profilePicture"
-          ></img>
-          <p>{user.username}</p>
-        </div>
-
-        <div className="navButtons">
-          <Link to="/">
-            <button className="selected">
-              <FontAwesomeIcon icon={faHome} />
-              <p>Home</p>
-            </button>
-          </Link>
-
-          <Link to="/messages">
-            <button>
-              <FontAwesomeIcon icon={faEnvelope} />
-              <p>Messages</p>
-            </button>
-          </Link>
-
-          <Link to={`/profile/${userId}`}>
-            <button>
-              <FontAwesomeIcon icon={faUserCircle} />
-              <p>Profile</p>
-            </button>
-          </Link>
-
-          <Link to="/search">
-            <button>
-              <FontAwesomeIcon icon={faSearch} />
-              <p>Search</p>
-            </button>
-          </Link>
-
-          <Link to="/settings">
-            <button>
-              <FontAwesomeIcon icon={faCog} />
-              <p>Settings</p>
-            </button>
-          </Link>
-        </div>
-
-        <div className="navFooter">
-          <img src={ProfilePic} alt="profilePicture"></img>
-          <h1>Devcord</h1>
-        </div>
-      </div>
+      <Navbar btn={1} />
 
       <div className="content">
         <div className="mainContent">
@@ -170,7 +113,7 @@ const Home = ({ userId }) => {
                       <Post
                         key={i._id}
                         data={i}
-                        userId={userId}
+                        userId={user._id}
                         proflie={false}
                       />
                     );
