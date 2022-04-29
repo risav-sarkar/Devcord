@@ -36,6 +36,38 @@ const AuthReducer = (state, action) => {
           ),
         },
       };
+    case "DESC":
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          desc: action.payload,
+        },
+      };
+    case "CITY":
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          city: action.payload,
+        },
+      };
+    case "PROFILEPIC":
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          profilePicture: action.payload,
+        },
+      };
+    case "COVERPIC":
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          coverPicture: action.payload,
+        },
+      };
     default:
       return state;
   }

@@ -1,16 +1,25 @@
-import ProfilePic from "../../assets/Profile.jpg";
-import Post from "../resuableComponents/post";
+import { useContext, useEffect, useRef, useState } from "react";
+
+//Libraries
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faImages } from "@fortawesome/free-solid-svg-icons";
-import Rightbar from "../resuableComponents/rightbar";
-import { useContext, useEffect, useRef, useState } from "react";
-import { AuthContext } from "../../context/AuthContext";
 import axios from "axios";
+
+//Assets
+import ProfilePic from "../../assets/Profile.jpg";
+
+//Components
+import { AuthContext } from "../../context/AuthContext";
 import Navbar from "../resuableComponents/navbar";
+import Rightbar from "../resuableComponents/rightbar";
+import Post from "../resuableComponents/post";
+import Spinner from "../resuableComponents/spinner";
 
 const Home = () => {
   const [posts, setPosts] = useState([]);
   const [file, setFile] = useState(null);
+  const [fetching, setFetching] = useState(true);
+
   const desc = useRef("");
   const { user } = useContext(AuthContext);
 
@@ -20,6 +29,7 @@ const Home = () => {
         `http://localhost:8800/api/posts/timeline/${user._id}`
       );
       setPosts(res.data);
+      setFetching(false);
     };
     postFetch();
   }, [user._id]);
@@ -104,21 +114,24 @@ const Home = () => {
                 </div>
               </form>
             </div>
-            {posts
-              ? posts
-                  .slice(0)
-                  .reverse()
-                  .map((i) => {
-                    return (
-                      <Post
-                        key={i._id}
-                        data={i}
-                        userId={user._id}
-                        proflie={false}
-                      />
-                    );
-                  })
-              : null}
+
+            {fetching === true ? (
+              <Spinner />
+            ) : (
+              posts
+                .slice(0)
+                .reverse()
+                .map((i) => {
+                  return (
+                    <Post
+                      key={i._id}
+                      data={i}
+                      userId={user._id}
+                      proflie={false}
+                    />
+                  );
+                })
+            )}
           </div>
         </div>
         <div className="rightBar">

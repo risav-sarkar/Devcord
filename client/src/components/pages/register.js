@@ -1,7 +1,9 @@
 import { Link } from "react-router-dom";
-import axios from "axios";
 import { useRef } from "react";
 import { useNavigate } from "react-router";
+
+//Libraries
+import axios from "axios";
 
 const Register = () => {
   const username = useRef();

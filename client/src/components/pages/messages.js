@@ -1,3 +1,4 @@
+//Components
 import Rightbar from "../resuableComponents/rightbar";
 import Navbar from "../resuableComponents/navbar";
 
