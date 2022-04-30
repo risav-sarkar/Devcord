@@ -221,6 +221,76 @@ body {
   }
 }
 
+.rightBar {
+  padding: 20px 20px 20px 0;
+  overflow: scroll;
+}
+
+.rightBar .rightBarContent {
+  width: 100%;
+}
+
+.rightBar .rightBarSection {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr;
+      grid-template-columns: 1fr;
+  grid-gap: 15px;
+}
+
+.rightBar .rightBarSection h2 {
+  padding-left: 5px;
+}
+
+.rightBar .rightBarSection .rightBarSectionItem {
+  border-radius: 20px;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr;
+      grid-template-columns: 1fr;
+  gap: 2px;
+  overflow: hidden;
+}
+
+.rightBar .rightBarSection .rightBarSectionItem .rightBarItem {
+  background-color: #161618;
+  padding: 15px;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: auto 90px;
+      grid-template-columns: auto 90px;
+  place-items: center;
+  gap: 10px;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.rightBar .rightBarSection .rightBarSectionItem .rightBarItem .itemText h5 {
+  margin-top: 5px;
+  color: #a8a8a8;
+}
+
+.rightBar .rightBarSection .rightBarSectionItem .rightBarItem .itemImg {
+  width: 90px;
+  height: 90px;
+}
+
+.rightBar .rightBarSection .rightBarSectionItem .rightBarItem .itemImg img {
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 8px;
+}
+
+.rightBar .rightBarSection .rightBarSectionItem .rightBarItem:hover {
+  background-color: #242427;
+}
+
+@media (max-width: 900px) {
+  .rightBar {
+    display: none;
+  }
+}
+
 .layout {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -388,18 +458,10 @@ body {
   display: none;
 }
 
-.layout .content .rightBar {
-  background-color: #414141;
-  padding: 20px;
-}
-
 @media (max-width: 900px) {
   .layout .content {
     -ms-grid-columns: 1fr;
         grid-template-columns: 1fr;
-  }
-  .layout .content .rightBar {
-    display: none;
   }
 }
 

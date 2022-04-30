@@ -4,6 +4,7 @@ $text_white: #e0ddfa;
 $text_grey: #a8a8a8;
 $background1: #040405;
 $background2: rgb(22, 22, 24);
+$background2-hover:rgb(36, 36, 39);
 $accent1: #634bff;
 $accent1_hover: #3b1cff;
 $max_width: 1400px;
@@ -190,6 +191,67 @@ body {
 }
 }
 
+.rightBar {
+  padding: 20px 20px 20px 0;
+  overflow: scroll;
+  .rightBarContent{
+    width: 100%;
+  }
+  .rightBarSection{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap:15px;
+    
+    h2{
+      padding-left: 5px;
+    }
+
+    .rightBarSectionItem{
+      border-radius: 20px;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap:2px;
+      overflow: hidden;
+
+      .rightBarItem{
+        background-color: $background2;
+        padding: 15px;
+        display: grid;
+        grid-template-columns: auto 90px;
+        place-items: center;
+        gap:10px;
+
+        .itemText{
+          h5{
+            margin-top: 5px;
+            color: $text_grey;
+          }
+        }
+
+        .itemImg{
+          width: 90px;
+          height: 90px;
+          img{
+            max-width: 100%;
+            max-height: 100%;
+            border-radius: 8px;
+          }
+        }
+        transition: 0.3s;
+
+        &:hover{
+          background-color: $background2-hover;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 900px) {
+  .rightBar {
+    display: none;
+  }
+}
 // MAIN LAYOUT
 
 .layout {
@@ -329,18 +391,11 @@ body {
       display: none;
     }
 
-    .rightBar {
-      background-color: rgb(65, 65, 65);
-      padding: 20px;
-    }
+    
   }
   @media (max-width: 900px) {
     .content {
       grid-template-columns: 1fr;
-
-      .rightBar {
-        display: none;
-      }
     }
   }
 }
