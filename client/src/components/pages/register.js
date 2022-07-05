@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { useRef } from "react";
 import { useNavigate } from "react-router";
+import LogoPic from "../../assets/Logo.png";
 
 //Libraries
 import axios from "axios";
@@ -34,7 +35,12 @@ const Register = () => {
   return (
     <div className="login">
       <div className="loginLeft">
-        <h1 className="loginLogo">Devcord</h1>
+        <div className="loginTitle">
+          <div className="imgContainer">
+            <img src={LogoPic} alt="profilePicture"></img>
+          </div>
+          <h1 className="loginLogo">Devcord</h1>
+        </div>
       </div>
       <div className="loginRight">
         <form className="loginBox" onSubmit={handleClick}>

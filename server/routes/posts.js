@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const Post = require("../models/Post");
 const User = require("../models/User");
+const axios = require("axios");
 
 //create a post
 router.post("/", async (req, res) => {
@@ -90,6 +91,48 @@ router.get("/profile/:id", async (req, res) => {
     const user = await User.findById(req.params.id);
     const posts = await Post.find({ userId: user._id });
     res.status(200).json(posts);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+//add comment to a post
+router.post("/comment/:id", async (req, res) => {
+  try {
+    const post = await Post.findById(req.params.id);
+    await post.updateOne({
+      $push: {
+        comments: { userId: req.body.userId, text: req.body.text },
+      },
+    });
+    res.status(200).json("The comment added");
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+//Get comment of a post
+router.get("/comment/:id", async (req, res) => {
+  try {
+    const post = await Post.findById(req.params.id);
+
+    const GetComments = async (comments) => {
+      for (let i = 0; i < post.comments.length; i++) {
+        const res = await axios.get(
+          `http://localhost:8800/api/users/${post.comments[i].userId}`
+        );
+
+        const obj = { commentDetails: post.comments[i], user: res.data };
+        comments.splice();
+        comments.push(obj);
+      }
+      return comments;
+    };
+
+    let comments = [];
+    comments = GetComments(comments);
+    console.log(comments);
+    res.status(200).json(comments);
   } catch (err) {
     res.status(500).json(err);
   }

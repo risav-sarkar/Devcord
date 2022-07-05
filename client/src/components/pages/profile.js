@@ -19,7 +19,7 @@ import Spinner from "../resuableComponents/spinner";
 
 const Profile = () => {
   const { user, dispatch } = useContext(AuthContext);
-  console.log(user);
+
   const { id } = useParams();
   const [posts, setPosts] = useState([]);
   const [profileuser, setProfileUser] = useState(null);
@@ -31,21 +31,23 @@ const Profile = () => {
   const city = useRef("");
 
   useEffect(() => {
-    const postFetch = async () => {
-      const res = await axios.get(
-        `http://localhost:8800/api/posts/profile/${id}`
-      );
-      setPosts(res.data);
-      setFetching(false);
-    };
-    const userFetch = async () => {
-      const res = await axios.get(`http://localhost:8800/api/users/${id}`);
-      setProfileUser(res.data);
-    };
-
-    userFetch();
-    postFetch();
+    GetUserPosts();
+    GetUser();
   }, [user, id]);
+
+  const GetUserPosts = async () => {
+    setFetching(true);
+    const res = await axios.get(
+      `http://localhost:8800/api/posts/profile/${id}`
+    );
+    setPosts(res.data);
+    setFetching(false);
+  };
+
+  const GetUser = async () => {
+    const res = await axios.get(`http://localhost:8800/api/users/${id}`);
+    setProfileUser(res.data);
+  };
 
   const handleFollowAndUnfollowUser = async (e) => {
     try {
@@ -295,6 +297,9 @@ const Profile = () => {
                         data={i}
                         userId={user._id}
                         profile={user._id === id ? true : false}
+                        deleteFunc={() => {
+                          GetUserPosts();
+                        }}
                       />
                     );
                   })}

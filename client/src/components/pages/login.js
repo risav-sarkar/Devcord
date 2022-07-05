@@ -1,5 +1,6 @@
 import { useContext, useRef } from "react";
 import { Link } from "react-router-dom";
+import LogoPic from "../../assets/Logo.png";
 
 //Components
 import { loginCall } from "../../apiCalls";
@@ -21,7 +22,12 @@ export default function Login() {
   return (
     <div className="login">
       <div className="loginLeft">
-        <h1 className="loginLogo">Devcord</h1>
+        <div className="loginTitle">
+          <div className="imgContainer">
+            <img src={LogoPic} alt="profilePicture"></img>
+          </div>
+          <h1 className="loginLogo">Devcord</h1>
+        </div>
       </div>
       <div className="loginRight">
         <form className="loginBox" onSubmit={handleClick}>

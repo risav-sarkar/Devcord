@@ -291,6 +291,188 @@ body {
   }
 }
 
+.modalContainerComment {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(23, 23, 23, 0.653);
+  z-index: 999;
+}
+
+.modalContainerComment .modalContentComment {
+  display: -ms-grid;
+  display: grid;
+  height: 100%;
+  place-items: center;
+}
+
+.modalContainerComment .modalContentComment .box {
+  display: -ms-grid;
+  display: grid;
+  position: relative;
+  -ms-grid-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  max-width: 1000px;
+  background-color: #040405;
+  padding: 10px;
+  min-height: 70vh;
+  border-radius: 20px;
+}
+
+.modalContainerComment .modalContentComment .box .box1 {
+  display: -ms-grid;
+  display: grid;
+  place-items: center;
+}
+
+.modalContainerComment .modalContentComment .box .box1 div {
+  width: 100%;
+}
+
+.modalContainerComment .modalContentComment .box .box1 .mainText {
+  margin: 0;
+  width: 100%;
+}
+
+.modalContainerComment .modalContentComment .box .box1 .imageContainer img {
+  border-radius: 10px;
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.modalContainerComment .modalContentComment .box .box2 {
+  position: relative;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  overflow: hidden;
+}
+
+.modalContainerComment .modalContentComment .box .box2 .header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 10px;
+}
+
+.modalContainerComment .modalContentComment .box .box2 .header button {
+  background-color: transparent;
+  padding: 5px 10px;
+  border: none;
+  outline: none;
+  color: #e0ddfa;
+  font-size: 26px;
+  cursor: pointer;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.modalContainerComment .modalContentComment .box .box2 .header button:hover {
+  color: #a8a8a8;
+}
+
+.modalContainerComment .modalContentComment .box .box2 h4 {
+  text-align: center;
+}
+
+.modalContainerComment .modalContentComment .box .box2 .commentBox {
+  max-height: 50vh;
+  padding: 5px 0;
+  overflow: scroll;
+}
+
+.modalContainerComment .modalContentComment .box .box2 .btnContainer {
+  width: 100%;
+  background-color: #040405;
+}
+
+.modalContainerComment .modalContentComment .box .box2 .btnContainer .commentForm {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+.modalContainerComment .modalContentComment .box .box2 .btnContainer .commentForm input {
+  width: 100%;
+  background-color: #161618;
+  padding: 15px 10px;
+  color: #e0ddfa;
+  border: none;
+  outline: none;
+  font-size: 16px;
+}
+
+.modalContainerComment .modalContentComment .box .box2 .btnContainer .commentForm button {
+  cursor: pointer;
+  padding: 10px 14px;
+  font-size: 20px;
+  border-radius: 0 15px 15px 0;
+  border: none;
+  outline: none;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.modalContainerComment .modalContentComment .box .box2 .btnContainer .commentForm button:hover {
+  background-color: #a8a8a8;
+}
+
+@media (max-width: 650px) {
+  .modalContainerComment .modalContentComment .box {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    height: 100%;
+    width: 100%;
+    border-radius: 0;
+  }
+  .modalContainerComment .modalContentComment .header {
+    margin-top: 5px;
+  }
+  .modalContainerComment .modalContentComment .mainText {
+    padding: 10px;
+  }
+}
+
+@media (min-width: 651px) {
+  .modalContainerComment .modalContentComment {
+    padding: 10px;
+  }
+}
+
+@media (max-width: 500px) {
+  .modalContainerComment .modalContentComment {
+    padding-bottom: 62px;
+  }
+}
+
 .layout {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -504,7 +686,7 @@ body {
   }
 }
 
-.profileContainer {
+.profileContainer .profileSection {
   position: relative;
 }
 
@@ -858,8 +1040,32 @@ body {
   place-items: center;
 }
 
+.login .loginLeft .loginTitle {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.login .loginLeft .loginTitle .imgContainer {
+  height: 100px;
+  width: 100px;
+}
+
+.login .loginLeft .loginTitle .imgContainer img {
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+}
+
 .login .loginLeft h1 {
-  font-size: 60px;
+  font-size: 50px;
 }
 
 .login .loginRight {

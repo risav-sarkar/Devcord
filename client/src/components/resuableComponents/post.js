@@ -5,12 +5,15 @@ import {
   faTrash,
   faTimes,
   faCheck,
+  faComment,
 } from "@fortawesome/free-solid-svg-icons";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import CommentModal from "./commentModal";
 
-const Post = ({ userId, data, profile }) => {
+const Post = ({ userId, data, profile, deleteFunc }) => {
   const [modal, setModal] = useState(0);
+  const [commentModal, setCommentModal] = useState(0);
   const [user, setUser] = useState(null);
   const [likes, setLikes] = useState(data.likes.length);
   const [isLiked, setIsLiked] = useState(
@@ -40,14 +43,22 @@ const Post = ({ userId, data, profile }) => {
   const handleDelete = async () => {
     try {
       await axios.delete(`http://localhost:8800/api/posts/${data._id}`);
+      deleteFunc();
     } catch (err) {
       console.log(err);
     }
-    window.location.reload();
   };
 
   return (
     <div className="post">
+      {commentModal === 1 ? (
+        <CommentModal
+          data={data}
+          func={() => {
+            setCommentModal(0);
+          }}
+        />
+      ) : null}
       <div className="postHeader">
         <img
           src={
@@ -125,6 +136,14 @@ const Post = ({ userId, data, profile }) => {
         >
           <FontAwesomeIcon icon={faHeart} />
           {likes}
+        </button>
+        <button
+          onClick={() => {
+            commentModal === 0 ? setCommentModal(1) : setCommentModal(0);
+          }}
+        >
+          <FontAwesomeIcon icon={faComment} />
+          {0}
         </button>
       </div>
     </div>

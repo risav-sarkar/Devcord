@@ -10,6 +10,7 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 import { useContext } from "react";
 import ProfilePic from "../../assets/Profile.jpg";
+import LogoPic from "../../assets/Logo.png";
 
 const Navbar = ({ btn }) => {
   const { user } = useContext(AuthContext);
@@ -62,7 +63,7 @@ const Navbar = ({ btn }) => {
       </div>
 
       <div className="navFooter">
-        <img src={ProfilePic} alt="profilePicture"></img>
+        <img src={LogoPic} alt="profilePicture"></img>
         <h1>Devcord</h1>
       </div>
     </div>
